@@ -1,0 +1,4 @@
+#igoring some files and directories 
+
+bin/
+obj/
