@@ -1,0 +1,11 @@
+/home/tomek/Dokumenty/studia/WSB/semestr-2/obiektowe/gra-k/bin/Debug/netcoreapp3.1/gra-k
+/home/tomek/Dokumenty/studia/WSB/semestr-2/obiektowe/gra-k/bin/Debug/netcoreapp3.1/gra-k.deps.json
+/home/tomek/Dokumenty/studia/WSB/semestr-2/obiektowe/gra-k/bin/Debug/netcoreapp3.1/gra-k.runtimeconfig.json
+/home/tomek/Dokumenty/studia/WSB/semestr-2/obiektowe/gra-k/bin/Debug/netcoreapp3.1/gra-k.runtimeconfig.dev.json
+/home/tomek/Dokumenty/studia/WSB/semestr-2/obiektowe/gra-k/bin/Debug/netcoreapp3.1/gra-k.dll
+/home/tomek/Dokumenty/studia/WSB/semestr-2/obiektowe/gra-k/bin/Debug/netcoreapp3.1/gra-k.pdb
+/home/tomek/Dokumenty/studia/WSB/semestr-2/obiektowe/gra-k/obj/Debug/netcoreapp3.1/gra-k.csprojAssemblyReference.cache
+/home/tomek/Dokumenty/studia/WSB/semestr-2/obiektowe/gra-k/obj/Debug/netcoreapp3.1/gra-k.AssemblyInfoInputs.cache
+/home/tomek/Dokumenty/studia/WSB/semestr-2/obiektowe/gra-k/obj/Debug/netcoreapp3.1/gra-k.AssemblyInfo.cs
+/home/tomek/Dokumenty/studia/WSB/semestr-2/obiektowe/gra-k/obj/Debug/netcoreapp3.1/gra-k.dll
+/home/tomek/Dokumenty/studia/WSB/semestr-2/obiektowe/gra-k/obj/Debug/netcoreapp3.1/gra-k.pdb
