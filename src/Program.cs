@@ -7,8 +7,6 @@ namespace gra_k
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Walka test = new Walka();
-            System.Console.WriteLine(test.pole);
         }
     }
 }
