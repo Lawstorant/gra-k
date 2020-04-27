@@ -1,4 +1,5 @@
 #igoring some files and directories 
 
-bin/
-obj/
+/bin/
+/obj/
+/.vscode/
