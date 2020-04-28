@@ -1,0 +1,3 @@
+nazwa=Prosty
+obrazenia=2
+koszt=2
