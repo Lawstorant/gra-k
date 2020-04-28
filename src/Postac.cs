@@ -1,6 +1,6 @@
 namespace gra_k
 {
-    public class Postać
+    public class Postac
     {
         
     }
