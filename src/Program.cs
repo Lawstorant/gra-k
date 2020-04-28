@@ -6,8 +6,7 @@ namespace gra_k
     {
         static void Main(string[] args)
         {
-            Cios test = new Cios("ciosy/prosty.txt");
-            System.Console.WriteLine($"{test.pobierzNazwe()} {test.pobierzObrazenia()} {test.pobierzKoszt()}");
+            Console.WriteLine("Hello World!");
         }
     }
 }
