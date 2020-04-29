@@ -5,6 +5,8 @@ namespace gra_k
         private Bohater bohater;
         private Dojo miejsceNauki;
 
+        //jestesmy w domu
+
 
 
         public void walcz()
