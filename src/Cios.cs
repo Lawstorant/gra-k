@@ -35,8 +35,7 @@ namespace gra_k
             this.obrazenia = uint.Parse(linie[1]);
             this.koszt = uint.Parse(linie[2]);
         }
-        // hej tomek
-        // witaj kacper
+
         public string pobierzNazwe()
         {
             return this.nazwa;
