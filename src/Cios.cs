@@ -8,6 +8,8 @@ namespace gra_k
         private uint obrazenia;
         private uint koszt;
 
+        
+
         public Cios(string nazwa, uint obrazenia, uint koszt)
         {
             this.nazwa = nazwa;

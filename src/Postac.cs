@@ -9,6 +9,8 @@ namespace gra_k
         protected Cios[] listaCiosow;
         protected bool obrona;
 
+
+
         public Postac(uint zycie, uint wytrzymalosc, uint sila, uint pancerz)
         {
             this.zycie = zycie;
