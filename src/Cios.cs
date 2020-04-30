@@ -1,5 +1,5 @@
 using System.IO;
-// hej 
+
 namespace gra_k
 {
     public class Cios
