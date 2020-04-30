@@ -1,6 +1,6 @@
 namespace gra_k
 {
-    public class Bohater : Postac
+    public class Bohater // : Postac
     {
         protected uint poziom;
         protected uint doswiadczenie;

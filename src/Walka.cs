@@ -20,7 +20,9 @@ namespace gra_k
 
         public static Walka generujWalke(Postac bohater, Dojo dojoGry)
         {
-            
+            Walka pojedynek = new Walka();
+
+            return pojedynek;
         }
     }
 }
