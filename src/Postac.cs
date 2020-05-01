@@ -1,13 +1,23 @@
+using System.Collections.Generic;
+
 namespace gra_k
 {
+    public struct SilaObrony
+    {
+        public const double brak = 0;
+        public const double normalna = 0.4;
+        public const double mocna = 0.8;
+    }
+
     public class Postac
     {
         protected uint zycie;
         protected uint wytrzymalosc;
         protected uint sila;
         protected uint pancerz;
-        protected Cios[] listaCiosow;
-        protected bool obrona;
+        // Lista ciosów jako generyczna lista dynamiczna, ułatwia dodawanie ciosóœ
+        protected List<Cios> listaCiosow;
+        protected double obrona;
 
 
 
@@ -17,32 +27,36 @@ namespace gra_k
             this.wytrzymalosc = wytrzymalosc;
             this.sila = sila;
             this.pancerz = pancerz;
-            this.obrona = false;
-            // this.listaCiosow = new Cios[];
-            // TODO: pobierać ilość ciosów z dojo i na tej podstawie 
-            // tworzyć wielkość tablicy?
-            // Tomek
+            this.obrona = 0;
+            this.listaCiosow = new List<Cios>();
         }
 
         public Cios[] pobierzCiosy()
         {
-            return this.listaCiosow;
+            Cios[] zawartosc = new Cios[this.listaCiosow.Count];
+
+            for (int i = 0; i < this.listaCiosow.Count; i++)
+            {
+                zawartosc[i] = this.listaCiosow[i];
+            }
+
+            return zawartosc;
         }
 
         public void dodajCios(Cios dodawany)
         {
-            // tutaj trzeba zrobić dodawanie do tablicy
-            // this.listaCiosów[i] = dodawany;
+            this.listaCiosow.Add(dodawany);
         }
 
         public uint wykonajAtak(uint ciosIndex)
         {
-            return this.sila * this.listaCiosow[ciosIndex].pobierzObrazenia();
+            return this.sila * this.listaCiosow[(int)ciosIndex].pobierzObrazenia();
         }
 
-        public void pozycjaObronna()
+        public void pozycjaObronna(double moc)
         {
-            this.obrona = true;
+            this.obrona = moc;
+            this.wytrzymalosc -= (uint)(moc*5)/2;
         }
 
         public void pobierzStatus()
