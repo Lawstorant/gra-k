@@ -21,6 +21,7 @@ namespace gra_k
             // this.listaCiosow = new Cios[];
             // TODO: pobierać ilość ciosów z dojo i na tej podstawie 
             // tworzyć wielkość tablicy?
+            // Tomek
         }
 
         public Cios[] pobierzCiosy()
@@ -30,7 +31,8 @@ namespace gra_k
 
         public void dodajCios(Cios dodawany)
         {
-            // tutaj trzeba zrobić
+            // tutaj trzeba zrobić dodawanie do tablicy
+            // this.listaCiosów[i] = dodawany;
         }
 
         public uint wykonajAtak(uint ciosIndex)
@@ -45,7 +47,10 @@ namespace gra_k
 
         public void pobierzStatus()
         {
-            // trzeba wypełnić
+            // TODO: trzeba wypełnić
+            // status jako struct? Ułatwiłoby to przesyłanie
+            // do bufora wyświetlania
+            // Tomek
         }
     }
 }
