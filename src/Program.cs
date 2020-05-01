@@ -6,6 +6,7 @@ namespace gra_k
     {
         static void Main(string[] args)
         {
+            /*
             Bohater tomek = new Bohater(10, 10, 10, 1);
             tomek.dodajPieniadze(200);
             tomek.dodajDoswiadczenie(3300);
@@ -30,6 +31,10 @@ namespace gra_k
             System.Console.WriteLine(status.wytrzymalosc);
 
             tomek.przyjmijObrazenia(10);
+            */
+
+            var buforEkranu = new BuforEkranu(10,10);
+            buforEkranu.test();
         }
     }
 }
