@@ -9,6 +9,8 @@ namespace gra_k
             Console.WriteLine("Hello World!");//Hej
 
             // cześć tu tomek
+
+            //Kolejny komentarz
         }
     }
 }
