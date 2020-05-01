@@ -35,6 +35,9 @@ namespace gra_k
 
             var buforEkranu = new BuforEkranu(10,10);
             buforEkranu.test();
+            buforEkranu.wyswietlBufor();
+            buforEkranu.wyswietlBufor();
+            buforEkranu.wyswietlBufor();
         }
     }
 }

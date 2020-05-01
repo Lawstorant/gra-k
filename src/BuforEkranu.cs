@@ -12,15 +12,36 @@ namespace gra_k
         {
             this.width = x;
             this.height = y;
-            this.buffer = new char[x+1,y+1];
+            this.buffer = new char[y, x+1];
 
+            for (int i = 0; i < y; ++i)
+            {
+                for (int j = 0; j < x; ++j)
+                {
+                    this.buffer[i, j] = 'x';
+                }
+                this.buffer[i, x] = '\n';
+            }
+        }
+
+        public void wyswietlBufor()
+        {
+            System.Console.Clear();
             
+            for (int i = 0; i < this.height; ++i)
+            {
+                for (int j = 0; j <= this.width; ++j)
+                {
+                    System.Console.Write(this.buffer[i, j]);
+                }
+            }
         }
 
         public void test()
         {
-            this.buffer[2,2] = 'c';
-            System.Console.WriteLine(this.buffer[2,2]);
+            this.buffer[2, 2] = ' ';
+            this.buffer[6, 6] = ' ';
+            
         }
     }
 }
