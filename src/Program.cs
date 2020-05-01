@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace gra_k
 {
@@ -7,6 +7,8 @@ namespace gra_k
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");//Hej
+
+            // cześć tu tomek
         }
     }
 }
