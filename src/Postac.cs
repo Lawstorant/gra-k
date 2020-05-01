@@ -19,6 +19,8 @@ namespace gra_k
             this.pancerz = pancerz;
             this.obrona = false;
             // this.listaCiosow = new Cios[];
+            // TODO: pobierać ilość ciosów z dojo i na tej podstawie 
+            // tworzyć wielkość tablicy?
         }
 
         public Cios[] pobierzCiosy()
