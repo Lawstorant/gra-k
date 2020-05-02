@@ -33,26 +33,15 @@ namespace gra_k
             tomek.przyjmijObrazenia(10);
             */
 
-            try
-            {
-                System.Console.SetWindowSize(160, 60);
-            }
-            catch (System.Exception)
-            {
-                
-            }
-            //System.Console.BackgroundColor = ConsoleColor.Green;
-            System.Console.Clear();
-            System.Console.SetCursorPosition(5,2);
-            System.Console.Write("XDDD");
-            System.Console.SetCursorPosition(20, 20);
-            System.Console.ForegroundColor = ConsoleColor.Green;
-            System.Console.Write("XDDD");
-            System.Console.ForegroundColor = ConsoleColor.Black;
-            var buforEkranu = new BuforEkranu(30, 30);
-            System.Console.Write("\n");
-            //buforEkranu.test();
-            //buforEkranu.wyswietlBufor();
+            var ekran = new Wyswietlanie(40, 40);
+
+            ekran.okienko("Tytuł okienka", 2, 2, 30, 20);
+            ekran.gotoXY(3, 6);
+            ekran.pisz("Tutaj coś napisałem", true);
+            ekran.gotoXY(3, 7);
+            ekran.pisz("Tutaj też coś napisałem", false);
+            Console.ReadLine(); 
+            Console.CursorVisible = true;
         }
     }
 }
