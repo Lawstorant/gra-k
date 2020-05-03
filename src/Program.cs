@@ -33,17 +33,17 @@ namespace gra_k
             tomek.przyjmijObrazenia(10);
             */
 
-            var ekran = new Wyswietlanie(40, 40);
-
-            ekran.pisz("TEST TEST TEST", false, 10, 1);
-            ekran.okienko("Tytuł okienka", 2, 2, 30, 20);
-            ekran.gotoXY(3, 6);
-            ekran.pisz("Tutaj coś napisałem", true);
-            //ekran.gotoXY(3, 7);
-            ekran.pisz("Tutaj też coś napisałem", false, 3, 7);
-            ekran.rozdzielacz(18, true, 27, 4);
-            ekran.pisz("2", true, 29, 6);
-            ekran.pisz("4", false, 29, 7);
+            Wyswietlanie.clrscr();
+            Console.CursorVisible = false;
+            Wyswietlanie.pisz("TEST TEST TEST", false, 10, 1);
+            Wyswietlanie.okienko("Tytuł okienka", 2, 2, 30, 20);
+            Wyswietlanie.gotoXY(3, 6);
+            Wyswietlanie.pisz("Tutaj coś napisałem", true);
+            //Wyswietlanie.gotoXY(3, 7);
+            Wyswietlanie.pisz("Tutaj też coś napisałem", false, 3, 7);
+            Wyswietlanie.rozdzielacz(18, true, 27, 4);
+            Wyswietlanie.pisz("2", true, 29, 6);
+            Wyswietlanie.pisz("4", false, 29, 7);
             Console.ReadLine();
             Console.CursorVisible = true;
         }
