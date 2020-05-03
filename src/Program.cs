@@ -6,8 +6,8 @@ namespace gra_k
     {
         static void Main(string[] args)
         {
-            /*
-            Bohater tomek = new Bohater(10, 10, 10, 1);
+            
+            Bohater tomek = new Bohater(100, 100, 100, 1);
             tomek.dodajPieniadze(200);
             tomek.dodajDoswiadczenie(3300);
             tomek.wydajPieniadze(20);
@@ -31,9 +31,19 @@ namespace gra_k
             System.Console.WriteLine(status.wytrzymalosc);
 
             tomek.przyjmijObrazenia(10);
-            */
-
+            
+            InterfejsGry interfejs = new InterfejsGry();
             Wyswietlanie.clrscr();
+            interfejs.pasekStatusu(tomek.pobierzStatus(), 2, 200, 3, 230);
+
+            interfejs.ekranDojo(1);
+
+            Cios[] ciosy = new Cios[2] {xd, xd};
+            interfejs.oknoNaukiCiosow(ciosy, 1);
+            //interfejs.oknoPrzedmiotow(2);
+            Wyswietlanie.gotoXY(120, 40);
+
+            /*
             Console.CursorVisible = false;
             Wyswietlanie.pisz("TEST TEST TEST", false, 10, 1);
             Wyswietlanie.okienko("Tytuł okienka", 2, 2, 30, 20);
@@ -44,8 +54,8 @@ namespace gra_k
             Wyswietlanie.rozdzielacz(18, true, 27, 4);
             Wyswietlanie.pisz("2", true, 29, 6);
             Wyswietlanie.pisz("4", false, 29, 7);
-            Console.ReadLine();
             Console.CursorVisible = true;
+            */
         }
     }
 }

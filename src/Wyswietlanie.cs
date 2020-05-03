@@ -53,22 +53,24 @@ namespace gra_k
             for (int i = 0; i < height; i++)
             {
                 Wyswietlanie.gotoXY(x,y+i);
+                for (int j = 0; j < width; j++)
+                {
+                    Console.Write(" ");
+                }
             }
         }
 
-        public static void pisz(string tekst, bool zaznaczony)
+        public static void pisz(string tekst, ConsoleColor kolor)
         {
-            if(zaznaczony)
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-
+            Console.ForegroundColor = kolor;
             Console.Write(tekst);
             Console.ForegroundColor = ConsoleColor.White; 
         }
 
-        public static void pisz(string tekst, bool zaznaczony, int x, int y)
+        public static void pisz(string tekst, ConsoleColor kolor, int x, int y)
         {
             gotoXY(x, y);
-            Wyswietlanie.pisz(tekst, zaznaczony);
+            Wyswietlanie.pisz(tekst, kolor);
         }
 
         public static void linia(int dlugosc, bool pionowa)
@@ -114,8 +116,14 @@ namespace gra_k
 
         public static void rozdzielacz(int dlugosc, bool pionowy, int x, int y)
         {
-            gotoXY(x, y);
+            Wyswietlanie.gotoXY(x, y);
             rozdzielacz(dlugosc, pionowy);
+        }
+
+        public static void krzyz(int x, int y)
+        {
+            Wyswietlanie.gotoXY(x, y);
+            Console.Write('┼');
         }
 
         public static void prostokat(int x, int y, int width, int height)
@@ -143,6 +151,7 @@ namespace gra_k
 
         public static void okienko(string tytul, int x, int y, int width, int height)
         {   
+            Wyswietlanie.wyczyscPole(x, y, width, height);
             var offset = (width - tytul.Length) / 2;
             Wyswietlanie.prostokat(x, y, width, height);
             Wyswietlanie.gotoXY(x+offset,y+1);
