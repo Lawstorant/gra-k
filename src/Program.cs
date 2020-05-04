@@ -16,6 +16,8 @@ namespace gra_k
 
             tomek.dodajCios(xd);
             tomek.dodajCios(xd);
+            tomek.dodajCios(xd);
+            tomek.dodajCios(xd);
 
             tomek.pozycjaObronna(SilaObrony.mocna);
 
@@ -33,27 +35,15 @@ namespace gra_k
             tomek.przyjmijObrazenia(10);
             
             InterfejsGry interfejs = new InterfejsGry();
-            Wyswietlanie.clrscr();
-            interfejs.pasekStatusu(tomek.pobierzStatus(), 2, 200, 3, 230);
 
+            interfejs.pasekStatusu(status, 2, 2, 2, 3);
+            interfejs.ekranGry(3, status, pobraneCiosy);
+            Console.ReadKey();
             interfejs.ekranDojo(0);
-            
-            Przedmiot xp = new Przedmiot("przedmioty/test.txt");
-            Przedmiot[] przedmioty = new Przedmiot[5] {xp, xp, xp, xp, xp};
-            interfejs.oknoPrzedmiotow(przedmioty, 3);
-            Wyswietlanie.gotoXY(0, 39);
+            interfejs.oknoNaukiCiosow(pobraneCiosy, 2);
 
-            /*
-            Console.CursorVisible = false;
-            Wyswietlanie.pisz("TEST TEST TEST", false, 10, 1);
-            Wyswietlanie.okienko("Tytuł okienka", 2, 2, 30, 20);
-            Wyswietlanie.pisz("Tutaj coś napisałem", true);
-            //Wyswietlanie.gotoXY(3, 7);
-            Wyswietlanie.pisz("Tutaj też coś napisałem", false, 3, 7);
-            Wyswietlanie.rozdzielacz(18, true, 27, 4);
-            Wyswietlanie.pisz("2", true, 29, 6);
-            Wyswietlanie.pisz("4", false, 29, 7);
-            */
+            Wyswietlanie.gotoXY(0,38);
+            
             Console.CursorVisible = true; 
         }
     }

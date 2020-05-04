@@ -7,14 +7,18 @@ namespace gra_k
         private string[] opcjeDojo;
         private string[] opcjeWalki;
         private string[] opcjeGry;
+        private string sciezkaInstrukcji;
+
+
 
         public InterfejsGry()
         {   
             // COMEBAK: Zrobić stringi w pliku i ich wczytywanie
             // stringi powinny być dla wszystkich okien
             this.opcjeDojo = new string[4] {"Idz na silownie", "Poznaj nowe ciosy", "Kup sobie pancerz", "Powrot"};
-            this.opcjeGry = new string[3] {"Idz na silownie", "Poznaj nowe ciosy", "Kup sobie pancerz"};
+            this.opcjeGry = new string[4] {"Odwiedz Dojo", "Generuj przeciwnika", "Walczmy!", "Wyjscie z gry"};
             this.opcjeWalki = new string[3] {"Idz na silownie", "Poznaj nowe ciosy", "Kup sobie pancerz"};
+            this.sciezkaInstrukcji = "textfiles/instrukcja.txt";
 
             // rzeczy windowsowe
             try
@@ -56,9 +60,53 @@ namespace gra_k
             Wyswietlanie.pisz(tekst, ConsoleColor.White);
         }
 
-        public static void ekranGry()
+        public void ekranGry(uint zaznaczonaOpcja)
         {
-            
+            Wyswietlanie.okienko("Menu glowne", 0, 3, 30, 30);
+
+            for (int i = 0; i < this.opcjeGry.Length; ++i)
+            {
+                if(i == zaznaczonaOpcja)
+                    Wyswietlanie.pisz(this.opcjeGry[i], ConsoleColor.Blue, 3, 7+2*i);
+                else
+                    Wyswietlanie.pisz(this.opcjeGry[i], ConsoleColor.White, 3, 7+2*i);
+            }
+
+            Wyswietlanie.okienko("Instrukcja", 70, 3, 50, 30);
+            var czytnik = new System.IO.StreamReader(this.sciezkaInstrukcji);
+            string linia;
+            int offsetY = 0;
+            while ((linia = czytnik.ReadLine()) != null)
+            {
+                Wyswietlanie.pisz(linia, ConsoleColor.White, 73, 7+offsetY);
+                offsetY += 1;
+            }
+            czytnik.Close();
+
+            Wyswietlanie.okienko("Nastepny przeciwnik", 30, 3, 40, 30);
+        }
+
+        public void ekranGry(uint zaznaczonaOpcja, StatusPostaci przeciwnik, Cios[] listaCiosow)
+        {
+            this.ekranGry(zaznaczonaOpcja);
+            const int x = 33;
+
+            Wyswietlanie.pisz($"Statystyki", ConsoleColor.White, x, 6);
+            Wyswietlanie.pisz($"Życie: {przeciwnik.zycie}", ConsoleColor.Red, x, 8);
+            Wyswietlanie.pisz($"Wytrzymalosc: {przeciwnik.wytrzymalosc}", ConsoleColor.Yellow, x, 9);
+            Wyswietlanie.pisz($"Sila: {przeciwnik.sila}", ConsoleColor.White, x, 10);
+            Wyswietlanie.pisz($"Pancerz: {przeciwnik.pancerz}", ConsoleColor.White, x, 11);
+            Wyswietlanie.pisz($"Znane ciosy", ConsoleColor.White, x, 16);
+
+            Wyswietlanie.rozdzielacz(40, false, 30, 7);
+
+            Wyswietlanie.rozdzielacz(40, false, 30, 15);
+            Wyswietlanie.rozdzielacz(40, false, 30, 17);
+
+            for (int i = 0; i < listaCiosow.Length; i++)
+            {
+                Wyswietlanie.pisz($"{listaCiosow[i].pobierzNazwe()}", ConsoleColor.White, x, 18+i);
+            }
         }
 
         public void ekranDojo(uint zaznaczonaOpcja)
