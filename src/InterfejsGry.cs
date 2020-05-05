@@ -41,6 +41,40 @@ namespace gra_k
             Console.Clear();
         }
 
+        public void test()
+        {
+            Bohater tomek = new Bohater(100, 100, 100, 1);
+            tomek.dodajPieniadze(200);
+            tomek.dodajDoswiadczenie(3300);
+            tomek.wydajPieniadze(20);
+
+            Cios xd = new Cios("ciosy/prosty.txt");
+
+            tomek.dodajCios(xd);
+            tomek.dodajCios(xd);
+            tomek.dodajCios(xd);
+            tomek.dodajCios(xd);
+
+            tomek.pozycjaObronna(SilaObrony.mocna);
+
+            var pobraneCiosy = tomek.pobierzCiosy();
+            var status = tomek.pobierzStatus();
+            tomek.przyjmijObrazenia(10);
+
+            this.pasekStatusu(status, 2, 2, 2, 3);
+            this.ekranGry(0, status, pobraneCiosy);
+            Console.ReadKey();
+            this.ekranDojo(1);
+            this.oknoNaukiCiosow(pobraneCiosy, 2);
+            Console.ReadKey();
+            var xp = new Cwiczenie("cwiczenia/test.txt");
+            var cwiczenia = new Cwiczenie[3] {xp, xp, xp};
+            this.ekranDojo(0);
+            this.oknoCwiczen(cwiczenia, 1);
+            Console.ReadKey();
+            Wyswietlanie.gotoXY(0,38);
+        }
+
         public void pasekStatusu(
             StatusPostaci status,
             uint poziom,
@@ -231,7 +265,7 @@ namespace gra_k
 
         public void ekranWalki()
         {
-
+            
         }
     }
 }
