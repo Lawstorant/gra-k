@@ -53,14 +53,10 @@ namespace gra_k
 
             Cios xd = new Cios("Testowy", 12, 7);
 
-            tomek.dodajCios(xd);
-            tomek.dodajCios(xd);
-            tomek.dodajCios(xd);
-            tomek.dodajCios(xd);
-            tomek.dodajCios(xd);
-            tomek.dodajCios(xd);
-            tomek.dodajCios(xd);
-            tomek.dodajCios(xd);
+            for (int i = 0; i < 8; i++)
+            {
+                tomek.dodajCios(xd);
+            }
 
             tomek.pozycjaObronna(SilaObrony.mocna);
 
