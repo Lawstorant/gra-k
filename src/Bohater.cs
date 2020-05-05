@@ -21,6 +21,10 @@ namespace gra_k
             this.pieniadze = 0;
         }
 
+        // TODO: Zrobić konstruktor wczytujący bohatera z pliku zapisu
+
+        // TODO: Zrobić pobieranie dodatkowych statystyk bohatera
+
         public void dodajDoswiadczenie(uint doswiadczenie)
         {
             this.doswiadczenie += doswiadczenie;
