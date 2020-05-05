@@ -28,7 +28,7 @@ namespace gra_k
             {
                 // zmieniam wielkosć okna do rozmiaru gry
                 Console.SetWindowSize(120, 40);
-                Console.SetBufferSize(121, 41);
+                Console.SetBufferSize(120, 40);
                 // próbuję zmienić kodowanie na en-US
                 //System.Diagnostics.Process.Start("CMD.exe", "chcp 437");
             }
