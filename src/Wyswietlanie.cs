@@ -2,39 +2,8 @@ using System;
 
 namespace gra_k
 {
-    public class Wyswietlanie
+    public static class Wyswietlanie
     {
-        private uint width;
-        private uint height;
-
-
-        public Wyswietlanie(uint width, uint height)
-        {
-            this.width = width;
-            this.height = height;
-
-
-            // rzeczy windowsowe
-            try
-            {
-                // zmieniam wielkosć okna do rozmiaru gry
-                Console.SetWindowSize((int)width, (int)height);
-                Console.SetBufferSize((int)width, (int)height);
-                // próbuję zmienić kodowanie na en-US
-                //System.Diagnostics.Process.Start("CMD.exe", "chcp 437");
-            }
-            catch(Exception)
-            {
-    
-            }
-
-            // ustawiam domyślne kolory
-            Console.CursorVisible = false;            
-            //Console.BackgroundColor = ConsoleColor.Black;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Clear();
-        }
-
         public static void gotoXY(int x, int y)
         {
             Console.CursorLeft = x;
@@ -128,6 +97,8 @@ namespace gra_k
 
         public static void prostokat(int x, int y, int width, int height)
         {
+            Wyswietlanie.wyczyscPole(x, y, width, height);
+
             // górna krawędź
             Wyswietlanie.gotoXY(x,y);
             Console.Write('┌');

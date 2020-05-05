@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace gra_k
 {
@@ -7,6 +8,7 @@ namespace gra_k
         private string[] opcjeDojo;
         private string[] opcjeWalki;
         private string[] opcjeGry;
+        private string[] opcjeObrony;
         private string sciezkaInstrukcji;
 
 
@@ -15,9 +17,10 @@ namespace gra_k
         {   
             // COMEBAK: Zrobić stringi w pliku i ich wczytywanie
             // stringi powinny być dla wszystkich okien
-            this.opcjeDojo = new string[4] {"Idz na silownie", "Poznaj nowe ciosy", "Kup sobie pancerz", "Powrot"};
-            this.opcjeGry = new string[4] {"Odwiedz Dojo", "Generuj przeciwnika", "Walczmy!", "Wyjscie z gry"};
-            this.opcjeWalki = new string[3] {"Idz na silownie", "Poznaj nowe ciosy", "Kup sobie pancerz"};
+            this.opcjeDojo = new string[] {"Idz na silownie", "Poznaj nowe ciosy", "Kup sobie pancerz", "Powrot"};
+            this.opcjeGry = new string[] {"Odwiedz Dojo", "Generuj przeciwnika", "Walczmy!", "Wyjscie z gry"};
+            this.opcjeWalki = new string[] {"Atak", "Obrona", "Zakoncz ture", "Ucieczka"};
+            this.opcjeObrony = new string[] {"Normalna", "Mocna", "Powrot"};
             this.sciezkaInstrukcji = "textfiles/instrukcja.txt";
 
             // rzeczy windowsowe
@@ -31,7 +34,7 @@ namespace gra_k
             }
             catch(Exception)
             {
-    
+                // whatever
             }
 
             // ustawiam domyślne kolory
@@ -48,8 +51,12 @@ namespace gra_k
             tomek.dodajDoswiadczenie(3300);
             tomek.wydajPieniadze(20);
 
-            Cios xd = new Cios("ciosy/prosty.txt");
+            Cios xd = new Cios("Testowy", 12, 7);
 
+            tomek.dodajCios(xd);
+            tomek.dodajCios(xd);
+            tomek.dodajCios(xd);
+            tomek.dodajCios(xd);
             tomek.dodajCios(xd);
             tomek.dodajCios(xd);
             tomek.dodajCios(xd);
@@ -65,14 +72,39 @@ namespace gra_k
             this.ekranGry(0, status, pobraneCiosy);
             Console.ReadKey();
             this.ekranDojo(1);
+            Console.ReadKey();
             this.oknoNaukiCiosow(pobraneCiosy, 2);
             Console.ReadKey();
-            var xp = new Cwiczenie("cwiczenia/test.txt");
-            var cwiczenia = new Cwiczenie[3] {xp, xp, xp};
+            var xp = new Cwiczenie("Testowe", 4, 3, 4, 5);
+            var cwiczenia = new Cwiczenie[] {xp, xp, xp};
             this.ekranDojo(0);
             this.oknoCwiczen(cwiczenia, 1);
             Console.ReadKey();
+            this.ekranDojo(2);
+            var xc = new Przedmiot("Testowy", 12, 154);
+            var przedmioty = new Przedmiot[] {xc, xc, xc, xc};
+            this.oknoPrzedmiotow(przedmioty, 1);
+            Console.ReadKey();
+
+            Wyswietlanie.clrscr();
+            this.pasekStatusu(status, 2, 2, 2, 3);
+            this.ekranWalki(0);
+            var lista = new List<string>();
+            lista.Add("Zaczynamy! Hej, Hej!");
+            lista.Add(" ");
+            for (int i = 0; i < 16; i++)
+            {
+                lista.Add($"{i} TEST TEST TEST");
+            }
+            this.oknoPrzebieguWalki(lista);
+            this.oknoPrzeciwnika(status, pobraneCiosy);
+            this.okienkoWyboruCiosu(pobraneCiosy, 1);
+            Console.ReadKey();
+            this.ekranWalki(1);
+            this.oknoPrzebieguWalki(lista);
+            this.okienkoWyboruObrony(1);
             Wyswietlanie.gotoXY(0,38);
+            Console.ReadKey();
         }
 
         public void pasekStatusu(
@@ -82,6 +114,8 @@ namespace gra_k
             uint zdol,
             uint pieniadze)
         {
+            // TODO: dodatkowe atrybuty przekazywać przez jakiś struct
+
             Wyswietlanie.prostokat(0, 0, 120, 3);
             Wyswietlanie.wyczyscPole(1,1,118, 1);
 
@@ -132,14 +166,14 @@ namespace gra_k
             Wyswietlanie.pisz($"Pancerz: {przeciwnik.pancerz}", ConsoleColor.White, x, 11);
             Wyswietlanie.pisz($"Znane ciosy", ConsoleColor.White, x, 16);
 
-            Wyswietlanie.rozdzielacz(40, false, 30, 7);
+            Wyswietlanie.rozdzielacz(40, false, x-3, 7);
 
-            Wyswietlanie.rozdzielacz(40, false, 30, 15);
-            Wyswietlanie.rozdzielacz(40, false, 30, 17);
+            Wyswietlanie.rozdzielacz(40, false, x-3, 15);
+            Wyswietlanie.rozdzielacz(40, false, x-3, 17);
 
             for (int i = 0; i < listaCiosow.Length; i++)
             {
-                Wyswietlanie.pisz($"{listaCiosow[i].pobierzNazwe()}", ConsoleColor.White, x, 18+i);
+                Wyswietlanie.pisz($"{listaCiosow[i].pobierzNazwe()}", ConsoleColor.White, x, 19+i);
             }
         }
 
@@ -154,6 +188,7 @@ namespace gra_k
                 else
                     Wyswietlanie.pisz(this.opcjeDojo[i], ConsoleColor.White, 3, 7+2*i);
             }
+            Wyswietlanie.okienko("Podmenu", 40, 3, 80, 30);
         }
 
         public void oknoNaukiCiosow(Cios[] listaCiosow, int zaznaczonaOpcja)
@@ -173,7 +208,7 @@ namespace gra_k
             Wyswietlanie.krzyz(113, 7);
 
             int y = 8;
-            ConsoleColor kolor = ConsoleColor.White;
+            var kolor = ConsoleColor.White;
             for (int i = 0; i < listaCiosow.Length; ++i)
             {
                 if(i == zaznaczonaOpcja)
@@ -211,7 +246,7 @@ namespace gra_k
             Wyswietlanie.krzyz(112, 7);
 
             int y = 8;
-            ConsoleColor kolor = ConsoleColor.White;
+            var kolor = ConsoleColor.White;
             for (int i = 0; i < listaCwiczen.Length; ++i)
             {
                 if(i == zaznaczonaOpcja)
@@ -246,7 +281,7 @@ namespace gra_k
             Wyswietlanie.krzyz(112, 7);
 
             int y = 8;
-            ConsoleColor kolor = ConsoleColor.White;
+            var kolor = ConsoleColor.White;
             for (int i = 0; i < listaPrzedmiotow.Length; ++i)
             {
                 if(i == zaznaczonaOpcja)
@@ -263,9 +298,121 @@ namespace gra_k
             }
         }
 
-        public void ekranWalki()
+        public void ekranWalki(int zaznaczonaOpcja)
+        {   
+            Wyswietlanie.okienko("Wybierz akcje", 0, 3, 30, 30);
+
+            for (int i = 0; i < this.opcjeWalki.Length; ++i)
+            {
+                if(i == zaznaczonaOpcja)
+                    Wyswietlanie.pisz(this.opcjeWalki[i], ConsoleColor.Blue, 3, 7+2*i);
+                else
+                    Wyswietlanie.pisz(this.opcjeWalki[i], ConsoleColor.White, 3, 7+2*i);
+            }
+        }
+
+
+        public void oknoPrzeciwnika(StatusPostaci przeciwnik, Cios[] ciosyPrzeciwnika)
         {
+            Wyswietlanie.okienko("Twoj przeciwnik", 80, 3, 40, 30);
+
+            const int x = 83;
+            Wyswietlanie.pisz($"Statystyki", ConsoleColor.White, x, 6);
+            Wyswietlanie.pisz($"Życie: {przeciwnik.zycie}", ConsoleColor.Red, x, 8);
+            Wyswietlanie.pisz($"Wytrzymalosc: {przeciwnik.wytrzymalosc}", ConsoleColor.Yellow, x, 9);
+            Wyswietlanie.pisz($"Sila: {przeciwnik.sila}", ConsoleColor.White, x, 10);
+            Wyswietlanie.pisz($"Pancerz: {przeciwnik.pancerz}", ConsoleColor.White, x, 11);
+            Wyswietlanie.pisz($"Znane ciosy", ConsoleColor.White, x, 16);
+
+            Wyswietlanie.rozdzielacz(40, false, x-3, 7);
+
+            Wyswietlanie.rozdzielacz(40, false, x-3, 15);
+            Wyswietlanie.rozdzielacz(40, false, x-3, 17);
             
+
+            for (int i = 0; i < ciosyPrzeciwnika.Length; i++)
+            {
+                Wyswietlanie.pisz($"{ciosyPrzeciwnika[i].pobierzNazwe()}", ConsoleColor.White, x, 19+i);
+            }
+        }
+
+        public void oknoPrzebieguWalki(List<string> przebieg)
+        {
+            Wyswietlanie.okienko("Przebieg Walki", 30, 3, 50, 30);
+
+            const int x = 33;
+            int y = 7;
+            int i = 0;
+
+            if(przebieg.Count > 24)
+                i = przebieg.Count - 24;
+            
+            for (; i < przebieg.Count; i++)
+            {
+                Wyswietlanie.pisz(przebieg[i], ConsoleColor.White, x, y++);
+            }
+        }
+
+        public void okienkoWyboruCiosu(Cios[] listaCiosow, int zaznaczonaOpcja)
+        {   
+            const int x = 16;
+            const int y = 6;
+            const int w = 24;
+            Wyswietlanie.prostokat(x, y, w, listaCiosow.Length*2 + 3);
+            int temp, temp2 = x+w;
+            var kolor = ConsoleColor.White;
+
+            for (int i = 0; i <= listaCiosow.Length; i++)
+            {   
+                temp = y + 1 + i*2;
+                if(i == zaznaczonaOpcja)
+                    kolor = ConsoleColor.Blue;
+
+                if(i < listaCiosow.Length)
+                {
+                    Wyswietlanie.pisz(listaCiosow[i].pobierzNazwe(), kolor, x+1, temp);
+                    Wyswietlanie.pisz(listaCiosow[i].pobierzKoszt().ToString(), ConsoleColor.Yellow, temp2-6, temp);
+                    Wyswietlanie.pisz(listaCiosow[i].pobierzObrazenia().ToString(), ConsoleColor.Red, temp2-3, temp);
+                }
+                else
+                    Wyswietlanie.pisz("Powrot", kolor, x+1, temp);
+
+                if(i == zaznaczonaOpcja)
+                    kolor = ConsoleColor.White;
+            }
+        }
+
+        public void okienkoWyboruObrony(int zaznaczonaOpcja)
+        {   
+            const int x = 16;
+            const int y = 6;
+            const int w = 16;
+            Wyswietlanie.prostokat(x, y, w, 7);
+            int temp, temp2 = x+w-3;
+            var kolor = ConsoleColor.White;
+
+            for (int i = 0; i < opcjeObrony.Length; i++)
+            {   
+                temp = y + 1 + (i*2);
+                if(i == zaznaczonaOpcja)
+                    kolor = ConsoleColor.Blue;
+
+                Wyswietlanie.pisz(this.opcjeObrony[i], kolor, x+1, temp);
+
+                switch(this.opcjeObrony[i])
+                {
+                    case "Normalna":
+                        Wyswietlanie.pisz(SilaObrony.kosztNormalna.ToString(), ConsoleColor.Yellow, temp2, temp);
+                        break;
+                    
+                    case "Mocna":
+                        Wyswietlanie.pisz(SilaObrony.kosztMocna.ToString(), ConsoleColor.Yellow, temp2, temp);
+                        break;
+                }
+
+                if(i == zaznaczonaOpcja)
+                    kolor = ConsoleColor.White;
+            }
         }
     }
 }

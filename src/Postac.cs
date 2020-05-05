@@ -8,6 +8,8 @@ namespace gra_k
         public const double brak = 0;
         public const double normalna = 0.6;
         public const double mocna = 0.2;
+        public const int kosztNormalna = 1;
+        public const int kosztMocna = 2;
     }
 
     public struct StatusPostaci
