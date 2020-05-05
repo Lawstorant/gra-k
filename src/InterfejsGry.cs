@@ -107,6 +107,12 @@ namespace gra_k
             Console.ReadKey();
         }
 
+        public void info()
+        {
+            Wyswietlanie.prostokat(0, 33, 19, 3);
+            Wyswietlanie.pisz("Grupa 12, INIS2", ConsoleColor.White, 2, 34);
+        }
+
         public void pasekStatusu(
             StatusPostaci status,
             uint poziom,
@@ -115,6 +121,7 @@ namespace gra_k
             uint pieniadze)
         {
             // TODO: dodatkowe atrybuty przekazywać przez jakiś struct
+            this.info();
 
             Wyswietlanie.prostokat(0, 0, 120, 3);
             Wyswietlanie.wyczyscPole(1,1,118, 1);
