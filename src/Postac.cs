@@ -19,6 +19,10 @@ namespace gra_k
         public uint sila;
         public uint pancerz;
         public double obrona;
+        public uint poziom;
+        public uint doswiadczenie;
+        public uint punktyZdolnosci;
+        public uint pieniadze;
     }
 
     public class Postac

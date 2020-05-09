@@ -53,7 +53,10 @@ namespace gra_k
         }
 
         private void wykorzystajPunktyZdolnosci(uint wykorzystane) {
-            this.punktyZdolnosci -= wykorzystane;
+            if (wykorzystane <= this.punktyZdolnosci)
+                this.punktyZdolnosci -= wykorzystane;
+            else
+                this.punktyZdolnosci = 0;
         }
 
         public void dodajPieniadze(uint przychod)
@@ -73,6 +76,17 @@ namespace gra_k
         {
             base.dodajCios(dodawany);
             this.wykorzystajPunktyZdolnosci(dodawany.pobierzKoszt());
+        }
+
+        public new StatusPostaci pobierzStatus()
+        {
+            var aktualnyStatus = base.pobierzStatus();
+            aktualnyStatus.poziom = this.poziom;
+            aktualnyStatus.doswiadczenie = this.doswiadczenie;
+            aktualnyStatus.punktyZdolnosci = this.punktyZdolnosci;
+            aktualnyStatus.pieniadze = this.pieniadze;
+
+            return aktualnyStatus;
         }
     }
 }

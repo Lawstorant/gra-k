@@ -51,7 +51,7 @@ namespace gra_k
             tomek.dodajDoswiadczenie(3300);
             tomek.wydajPieniadze(20);
 
-            Cios xd = new Cios("Testowy", 12, 7);
+            Cios xd = new Cios("Testowy", 12, 2);
 
             for (int i = 0; i < 8; i++)
             {
@@ -62,12 +62,14 @@ namespace gra_k
 
             var pobraneCiosy = tomek.pobierzCiosy();
             var status = tomek.pobierzStatus();
+            System.Console.WriteLine(status.punktyZdolnosci);
             tomek.przyjmijObrazenia(10);
 
-            this.pasekStatusu(status, 2, 2, 2, 3);
+            this.pasekStatusu(status);
             this.ekranGry(0, status, pobraneCiosy);
             Console.ReadKey();
             this.ekranDojo(1);
+            Wyswietlanie.gotoXY(0,38);
             Console.ReadKey();
             this.oknoNaukiCiosow(pobraneCiosy, 2);
             Console.ReadKey();
@@ -83,7 +85,7 @@ namespace gra_k
             Console.ReadKey();
 
             Wyswietlanie.clrscr();
-            this.pasekStatusu(status, 2, 2, 2, 3);
+            this.pasekStatusu(status);
             this.ekranWalki(0);
             var lista = new List<string>();
             lista.Add("Zaczynamy! Hej, Hej!");
@@ -109,12 +111,7 @@ namespace gra_k
             Wyswietlanie.pisz("Grupa 12, INIS2", ConsoleColor.White, 2, 34);
         }
 
-        public void pasekStatusu(
-            StatusPostaci status,
-            uint poziom,
-            uint doswiadczenie,
-            uint zdol,
-            uint pieniadze)
+        public void pasekStatusu(StatusPostaci status)
         {
             // TODO: dodatkowe atrybuty przekazywać przez jakiś struct
             this.info();
@@ -123,15 +120,15 @@ namespace gra_k
             Wyswietlanie.wyczyscPole(1,1,118, 1);
 
             string tekst = $"Sila:{status.sila}, Pancerz:{status.pancerz}, ";
-            tekst += $"Poziom:{poziom}, Doswiadczenie:{doswiadczenie}/1000, ";
-            tekst += $"Pkt. Zdol:{zdol}, Pieniadze:{pieniadze}g";
+            tekst += $"Poziom:{status.poziom}, Doswiadczenie:{status.doswiadczenie}/1000, ";
+            tekst += $"Pkt. Zdol:{status.punktyZdolnosci}, Pieniadze:{status.pieniadze}g";
 
             Wyswietlanie.pisz($"Zycie:{status.zycie}, ", ConsoleColor.Red, 2, 1);
             Wyswietlanie.pisz($"Wytrzymalosc:{status.wytrzymalosc}, ", ConsoleColor.Yellow);
             Wyswietlanie.pisz(tekst, ConsoleColor.White);
         }
 
-        public void ekranGry(uint zaznaczonaOpcja)
+        public void ekranGry(int zaznaczonaOpcja)
         {
             Wyswietlanie.okienko("Menu glowne", 0, 3, 30, 30);
 
@@ -157,7 +154,7 @@ namespace gra_k
             Wyswietlanie.okienko("Nastepny przeciwnik", 30, 3, 40, 30);
         }
 
-        public void ekranGry(uint zaznaczonaOpcja, StatusPostaci przeciwnik, Cios[] listaCiosow)
+        public void ekranGry(int zaznaczonaOpcja, StatusPostaci przeciwnik, Cios[] listaCiosow)
         {
             this.ekranGry(zaznaczonaOpcja);
             const int x = 33;
@@ -180,7 +177,7 @@ namespace gra_k
             }
         }
 
-        public void ekranDojo(uint zaznaczonaOpcja)
+        public void ekranDojo(int zaznaczonaOpcja)
         {
             Wyswietlanie.okienko("Dojo", 0, 3, 40, 30);
 
