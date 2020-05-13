@@ -10,10 +10,7 @@ namespace gra_k
 
         public Dojo()
         {
-            // policzyć pliki w folderach i zapisać ścieżki do tablicy
-            // na podstawie ilości zainicjować tablice o takim rozmiarze
-            // w pętli tworzyć poszczegołne ciosy / przedmioty / ćwiczenia na podstawie ścieżek
-            // (przekazywać ścieżki do konstruktorów, obiekty przypisywać do tablicy)
+            // tworzymy i dodajemy ciosy
             var folder = "ciosy/";
             var iloscPlikow = Directory.GetFiles(folder).Length;
             this.listaCiosow = new Cios[iloscPlikow];
@@ -23,6 +20,7 @@ namespace gra_k
                 listaCiosow[i] = new Cios(Directory.GetFiles(folder)[i]);
             }
 
+            // tworzymy i dodajemy przedmioty
             folder = "przedmioty/";
             iloscPlikow = Directory.GetFiles(folder).Length;
             this.listaPrzedmiotow = new Przedmiot[iloscPlikow];
@@ -32,6 +30,7 @@ namespace gra_k
                 listaPrzedmiotow[i] = new Przedmiot(Directory.GetFiles(folder)[i]);
             }
 
+            // tworzymy i dodajemy ćwiczenia
             folder = "cwiczenia/";
             iloscPlikow = Directory.GetFiles(folder).Length;
             this.listaCwiczen = new Cwiczenie[iloscPlikow];
