@@ -44,6 +44,8 @@ namespace gra_k
             Console.Clear();
         }
 
+
+        // test interfejsu
         public void test()
         {
             Bohater tomek = new Bohater(100, 100, 100, 1);
@@ -105,12 +107,17 @@ namespace gra_k
             Console.ReadKey();
         }
 
+
+        // wyświetlanie informacji o grupie pod ekranem gry
         public void info()
         {
             Wyswietlanie.prostokat(0, 33, 19, 3);
             Wyswietlanie.pisz("Grupa 12, INIS2", ConsoleColor.White, 2, 34);
         }
 
+
+        // górny pasek statusu wyświetlający informacje o bohaterze
+        // przyjmuje StatusPostaci
         public void pasekStatusu(StatusPostaci status)
         {
             // TODO: dodatkowe atrybuty przekazywać przez jakiś struct
@@ -128,6 +135,9 @@ namespace gra_k
             Wyswietlanie.pisz(tekst, ConsoleColor.White);
         }
 
+
+        // główne menu gry a także jej ekran tytułowy
+        // wersja kiedy nie ma żadnego przeciwnika
         public void ekranGry(int zaznaczonaOpcja)
         {
             Wyswietlanie.okienko("Menu glowne", 0, 3, 30, 30);
@@ -154,7 +164,10 @@ namespace gra_k
             Wyswietlanie.okienko("Nastepny przeciwnik", 30, 3, 40, 30);
         }
 
-        public void ekranGry(int zaznaczonaOpcja, StatusPostaci przeciwnik, Cios[] listaCiosow)
+
+        // ekran główny wyświetlający informacje o kolejnym przeciwniku
+        // przyjmuje status przeciwnika i jego listę ciosów
+        public void ekranGry(int zaznaczonaOpcja, StatusPostaci przeciwnik, Cios[] listaCiosowPrzeciwnika)
         {
             this.ekranGry(zaznaczonaOpcja);
             const int x = 33;
@@ -171,12 +184,16 @@ namespace gra_k
             Wyswietlanie.rozdzielacz(40, false, x-3, 15);
             Wyswietlanie.rozdzielacz(40, false, x-3, 17);
 
-            for (int i = 0; i < listaCiosow.Length; i++)
+            for (int i = 0; i < listaCiosowPrzeciwnika.Length; i++)
             {
-                Wyswietlanie.pisz($"{listaCiosow[i].pobierzNazwe()}", ConsoleColor.White, x, 19+i);
+                Wyswietlanie.pisz($"{listaCiosowPrzeciwnika[i].pobierzNazwe()}", ConsoleColor.White, x, 19+i);
             }
         }
 
+
+        // ekran dojo wyświetla dojo we współpracy z oknami ciosów, przedmiotów i ćwiczeń
+        // przyjmuje int zaznaczonej opcji
+        // (możemy wysłać -1 jeżeli nie chcemy zaznaczać niczego)
         public void ekranDojo(int zaznaczonaOpcja)
         {
             Wyswietlanie.okienko("Dojo", 0, 3, 40, 30);
@@ -191,6 +208,8 @@ namespace gra_k
             Wyswietlanie.okienko("Podmenu", 40, 3, 80, 30);
         }
 
+
+        // pierwszy z ekranów pomocniczych dojo. Tutaj uczymy się nowych ciosów
         public void oknoNaukiCiosow(Cios[] listaCiosow, int zaznaczonaOpcja)
         {
             Wyswietlanie.okienko("Nauka ciosow", 40, 3, 80, 30);
@@ -225,6 +244,9 @@ namespace gra_k
             }
         }
 
+
+        // drugie okno pomocnicze dojo. Tutaj możemy wykonywać ćwiczenia,
+        // które podnoszą statystyki bohatera
         public void oknoCwiczen(Cwiczenie[] listaCwiczen, int zaznaczonaOpcja)
         {
             Wyswietlanie.okienko("Cwiczenia na silowni", 40, 3, 80, 30);
@@ -266,6 +288,8 @@ namespace gra_k
             }
         }
 
+
+        // ostatnie okno pomocnicze dojo. W tym możemy zakupować dodatkowe pancerze
         public void oknoPrzedmiotow(Przedmiot[] listaPrzedmiotow, int zaznaczonaOpcja)
         {
             Wyswietlanie.okienko("Pancerze do kupienia", 40, 3, 80, 30);
@@ -298,6 +322,8 @@ namespace gra_k
             }
         }
 
+
+        // menu i ekran walki
         public void ekranWalki(int zaznaczonaOpcja)
         {   
             Wyswietlanie.okienko("Wybierz akcje", 0, 3, 30, 30);
@@ -312,6 +338,7 @@ namespace gra_k
         }
 
 
+        // okno pomocnicze przeciwnika. Wyświetla jego status i znane ciosy
         public void oknoPrzeciwnika(StatusPostaci przeciwnik, Cios[] ciosyPrzeciwnika)
         {
             Wyswietlanie.okienko("Twoj przeciwnik", 80, 3, 40, 30);
@@ -336,6 +363,8 @@ namespace gra_k
             }
         }
 
+
+        // Wyświetla przebieg walki (ciosy, ataki, punkty obrażeń)
         public void oknoPrzebieguWalki(List<string> przebieg)
         {
             Wyswietlanie.okienko("Przebieg Walki", 30, 3, 50, 30);
@@ -353,6 +382,8 @@ namespace gra_k
             }
         }
 
+
+        // pop-up do wyboru ciosu, przyjmuje listę ciosów bohatera
         public void okienkoWyboruCiosu(Cios[] listaCiosow, int zaznaczonaOpcja)
         {   
             const int x = 16;
@@ -382,6 +413,8 @@ namespace gra_k
             }
         }
 
+
+        // pop-up do wyboru obrony
         public void okienkoWyboruObrony(int zaznaczonaOpcja)
         {   
             const int x = 16;
