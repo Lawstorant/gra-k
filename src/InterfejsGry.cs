@@ -111,8 +111,8 @@ namespace gra_k
         // wyświetlanie informacji o grupie pod ekranem gry
         public void info()
         {
-            Wyswietlanie.prostokat(0, 33, 19, 3);
-            Wyswietlanie.pisz("Grupa 12, INIS2", ConsoleColor.White, 2, 34);
+            Wyswietlanie.prostokat(0, 33, 23, 3);
+            Wyswietlanie.pisz("Grupa 12, INIS2_3.1", ConsoleColor.White, 2, 34);
         }
 
 
