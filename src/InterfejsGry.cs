@@ -228,16 +228,21 @@ namespace gra_k
 
             int y = 8;
             var kolor = ConsoleColor.White;
-            for (int i = 0; i < listaCiosow.Length; ++i)
+            for (int i = 0; i <= listaCiosow.Length; ++i)
             {
-                if(i == zaznaczonaOpcja)
+                if (i == zaznaczonaOpcja)
                     kolor = ConsoleColor.Blue;
+                
+                if (i < listaCiosow.Length)
+                {
+                    Wyswietlanie.pisz(listaCiosow[i].pobierzNazwe(), kolor, 43, y);
+                    Wyswietlanie.pisz(listaCiosow[i].pobierzObrazenia().ToString(), kolor, 110, y);
+                    Wyswietlanie.pisz(listaCiosow[i].pobierzKoszt().ToString(), kolor, 116, y);
+                }
+                else
+                    Wyswietlanie.pisz("Powrot", kolor, 43, y);
 
-                Wyswietlanie.pisz(listaCiosow[i].pobierzNazwe(), kolor, 43, y);
-                Wyswietlanie.pisz(listaCiosow[i].pobierzObrazenia().ToString(), kolor, 110, y);
-                Wyswietlanie.pisz(listaCiosow[i].pobierzKoszt().ToString(), kolor, 116, y);
-
-                if(i == zaznaczonaOpcja)
+                if (i == zaznaczonaOpcja)
                     kolor = ConsoleColor.White;
 
                 y += 2;
@@ -269,19 +274,24 @@ namespace gra_k
 
             int y = 8;
             var kolor = ConsoleColor.White;
-            for (int i = 0; i < listaCwiczen.Length; ++i)
+            for (int i = 0; i <= listaCwiczen.Length; ++i)
             {
-                if(i == zaznaczonaOpcja)
+                if (i == zaznaczonaOpcja)
                     kolor = ConsoleColor.Blue;
 
-                Wyswietlanie.pisz(listaCwiczen[i].pobierzNazwe(), kolor, 43, y);
-                Wyswietlanie.pisz($"{listaCwiczen[i].pobierzKoszt()}g", kolor, 94, y);
-                uint[] staty = listaCwiczen[i].pobierzStaty();
-                Wyswietlanie.pisz($"{staty[0]}", kolor, 101, y);
-                Wyswietlanie.pisz($"{staty[1]}", kolor, 108, y);
-                Wyswietlanie.pisz($"{staty[2]}", kolor, 115, y);
+                if (i < listaCwiczen.Length)
+                {
+                    Wyswietlanie.pisz(listaCwiczen[i].pobierzNazwe(), kolor, 43, y);
+                    Wyswietlanie.pisz($"{listaCwiczen[i].pobierzKoszt()}g", kolor, 94, y);
+                    uint[] staty = listaCwiczen[i].pobierzStaty();
+                    Wyswietlanie.pisz($"{staty[0]}", kolor, 101, y);
+                    Wyswietlanie.pisz($"{staty[1]}", kolor, 108, y);
+                    Wyswietlanie.pisz($"{staty[2]}", kolor, 115, y);
+                }
+                else
+                    Wyswietlanie.pisz("Powrot", kolor, 43, y);
 
-                if(i == zaznaczonaOpcja)
+                if (i == zaznaczonaOpcja)
                     kolor = ConsoleColor.White;
 
                 y += 2;
@@ -306,16 +316,21 @@ namespace gra_k
 
             int y = 8;
             var kolor = ConsoleColor.White;
-            for (int i = 0; i < listaPrzedmiotow.Length; ++i)
+            for (int i = 0; i <= listaPrzedmiotow.Length; ++i)
             {
-                if(i == zaznaczonaOpcja)
+                if (i == zaznaczonaOpcja)
                     kolor = ConsoleColor.Blue;
 
-                Wyswietlanie.pisz(listaPrzedmiotow[i].pobierzNazwe(), kolor, 43, y);
-                Wyswietlanie.pisz(listaPrzedmiotow[i].pobierzPancerz().ToString(), kolor, 108, y);
-                Wyswietlanie.pisz($"{listaPrzedmiotow[i].pobierzCene()}g", kolor, 114, y);
+                if (i < listaPrzedmiotow.Length)
+                {
+                    Wyswietlanie.pisz(listaPrzedmiotow[i].pobierzNazwe(), kolor, 43, y);
+                    Wyswietlanie.pisz(listaPrzedmiotow[i].pobierzPancerz().ToString(), kolor, 108, y);
+                    Wyswietlanie.pisz($"{listaPrzedmiotow[i].pobierzCene()}g", kolor, 114, y);
+                }
+                else
+                    Wyswietlanie.pisz("Powrot", kolor, 43, y);
 
-                if(i == zaznaczonaOpcja)
+                if (i == zaznaczonaOpcja)
                     kolor = ConsoleColor.White;
 
                 y += 2;
