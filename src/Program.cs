@@ -10,7 +10,7 @@ namespace gra_k
 
             // cześć tu tomek
             // hoho hehe
-
+            // gege
             //Kolejny komentarz
         }
     }
