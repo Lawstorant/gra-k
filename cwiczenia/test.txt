@@ -1,5 +1,0 @@
-nazwa=testowe-ćwiczenie
-koszt=34
-zycie=2
-wytrzymalosc=5
-sila=2

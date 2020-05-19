@@ -6,8 +6,8 @@ namespace gra_k
     public struct SilaObrony
     {
         public const double brak = 1.0;
-        public const double normalna = 0.6;
-        public const double mocna = 0.2;
+        public const double normalna = 0.7;
+        public const double mocna = 0.4;
         public const int kosztNormalna = 1;
         public const int kosztMocna = 2;
     }
@@ -76,7 +76,7 @@ namespace gra_k
         public uint wykonajAtak(int ciosIndex)
         {   
             this.wytrzymalosc -= this.listaCiosow[ciosIndex].pobierzKoszt();
-            return this.sila * this.listaCiosow[ciosIndex].pobierzObrazenia();
+            return this.sila + this.listaCiosow[ciosIndex].pobierzObrazenia();
         }
 
 
@@ -100,6 +100,13 @@ namespace gra_k
         public void ustawWytrzymalosc(uint punkty)
         {
             this.wytrzymalosc = punkty;
+        }
+
+
+
+        public void ustawZycie(uint zycie)
+        {
+            this.zycie = zycie;
         }
 
 
@@ -144,7 +151,7 @@ namespace gra_k
             // ilosc bazowana na połowie poziomu
             bool[] wykorzystane = new bool[dostepneCiosy.Length];
             int i = 0;
-            while ((i < poziom / 2 +1) && (i < dostepneCiosy.Length))
+            while ((i < poziom / 3 +1) && (i < dostepneCiosy.Length))
             {
                 var los = rnd.Next(0, dostepneCiosy.Length);
 

@@ -1,0 +1,5 @@
+nazwa=Wyciskanie na klatę
+koszt=300
+zycie=1
+wytrzymalosc=0
+sila=1

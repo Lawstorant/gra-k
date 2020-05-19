@@ -157,7 +157,7 @@ namespace gra_k
 
         public void oknoNastepnego()
         {
-            Wyswietlanie.okienko("Nastepny przeciwnik", 30, 3, 40, 30);
+            Wyswietlanie.okienko("Nastepny przeciwnik", 30, 3, 35, 30);
         }
 
         public void oknoNastepnego(StatusPostaci przeciwnik, Cios[] listaCiosowPrzeciwnika)
@@ -173,10 +173,10 @@ namespace gra_k
             Wyswietlanie.pisz($"Pancerz: {przeciwnik.pancerz}", ConsoleColor.White, x, 11);
             Wyswietlanie.pisz($"Znane ciosy", ConsoleColor.White, x, 16);
 
-            Wyswietlanie.rozdzielacz(40, false, x-3, 7);
+            Wyswietlanie.rozdzielacz(35, false, x-3, 7);
 
-            Wyswietlanie.rozdzielacz(40, false, x-3, 15);
-            Wyswietlanie.rozdzielacz(40, false, x-3, 17);
+            Wyswietlanie.rozdzielacz(35, false, x-3, 15);
+            Wyswietlanie.rozdzielacz(35, false, x-3, 17);
 
             for (int i = 0; i < listaCiosowPrzeciwnika.Length; i++)
             {
@@ -187,14 +187,15 @@ namespace gra_k
 
 
         public void oknoInstrukcji()
-        {
-            Wyswietlanie.okienko("Instrukcja", 70, 3, 50, 30);
+        {   
+            const int x = 65;
+            Wyswietlanie.okienko("Instrukcja", x, 3, 120-x, 30);
             var czytnik = new System.IO.StreamReader(this.sciezkaInstrukcji);
             string linia;
             int offsetY = 0;
             while ((linia = czytnik.ReadLine()) != null)
             {
-                Wyswietlanie.pisz(linia, ConsoleColor.White, 73, 7+offsetY);
+                Wyswietlanie.pisz(linia, ConsoleColor.White, x+3, 7+offsetY);
                 offsetY += 1;
             }
             czytnik.Close();

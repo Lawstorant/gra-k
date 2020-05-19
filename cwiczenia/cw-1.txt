@@ -1,0 +1,5 @@
+nazwa=Kardio na rowerku
+koszt=100
+zycie=1
+wytrzymalosc=0
+sila=0

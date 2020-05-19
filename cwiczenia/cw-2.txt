@@ -1,0 +1,5 @@
+nazwa=Interwałówka
+koszt=200
+zycie=0
+wytrzymalosc=1
+sila=0

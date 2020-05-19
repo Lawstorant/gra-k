@@ -45,6 +45,8 @@ namespace gra_k
             var przebiegRefresh = true;
             var wykonanoAtak = false;
             var wykonanoObrone = false;
+            uint pelneZycie = this.bohater.pobierzStatus().zycie;
+            var exitState = false;
 
             do
             {   
@@ -87,8 +89,12 @@ namespace gra_k
                         // atak
                         case 0:
                             if (!wykonanoAtak)
+                            {
                                 wykonanoAtak = przeciwnikRefresh = this.atak();
-                            
+                                if (this.przeciwnik.pobierzStatus().zycie == 0)
+                                    exitState = true;
+                            }
+
                             statusRefresh = true;
                             przebiegRefresh = true;
                             break;
@@ -107,6 +113,8 @@ namespace gra_k
                             this.przebieg.Add("Bohater oddal inicjatywe przciwnikowi");
                             this.przebieg.Add(" ");
                             this.ruchyPrzeciwnika();
+                            if (this.bohater.pobierzStatus().zycie == 0)
+                                    exitState = true;
                             this.KolejnaTura();
                             wykonanoAtak = wykonanoObrone = false;
                             przebiegRefresh = statusRefresh = true;
@@ -120,7 +128,11 @@ namespace gra_k
                 else if (wybor > 3)
                     wybor = 0;
 
-            } while (wybor != 3 || input.Key != ConsoleKey.Enter);
+            } while ((wybor != 3 || input.Key != ConsoleKey.Enter) && !exitState);
+
+            this.przyznanieNagrod();
+            this.bohater.ustawZycie(pelneZycie);
+            this.bohater.ustawWytrzymalosc(maxBohater);
         }
 
 
@@ -261,7 +273,8 @@ namespace gra_k
 
         private void przyznanieNagrod()
         {
-            ((Bohater)this.bohater).dodajPieniadze(1000);
+            ((Bohater)this.bohater).dodajPieniadze(100);
+            ((Bohater)this.bohater).dodajDoswiadczenie(600);
         }
     }
 }

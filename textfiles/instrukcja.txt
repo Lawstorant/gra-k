@@ -1,10 +1,17 @@
-Test
-test test 
-TESTEESTSET
+Gra-k czyli pojedynki na arenie!
 
-TESTEESTSET
+Trenuj swojego bohatera i bierz udział w walkach
+Czeka cię chwała, pieniądze a także uczucie dumy
+i spełnienia!
+Do boju!
+
+W każdej rundzie można atakować tylko raz,
+tak samo tylko raz można przyjąć pozycję obronną.
+Czynności te wymagają odpowiedniej liczby
+punktów wytrzymałości, które są odnawiane po
+każdej turze.
 
 
-
-
-TEST
+Poruszanie się po menusach gry:
+Strzałki góra/dół
+Zatwierdzanie wyboru klawiszem Enter
