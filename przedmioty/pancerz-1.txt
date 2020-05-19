@@ -1,0 +1,3 @@
+nazwa=Pancerz z papieru
+pancerz=1
+cena=100

@@ -15,7 +15,7 @@ namespace gra_k
         {
             this.dojo = new Dojo();
             this.bohater = new Bohater(5, 5, 2, 0);
-            this.bohater.dodajCios(new Cios("ciosy/prosty.txt"));
+            this.bohater.dodajCios(new Cios("ciosy/cios-1.txt"));
             this.przeciwnik = null;
             this.interfejs = new InterfejsGry();
         }
@@ -28,12 +28,18 @@ namespace gra_k
             ConsoleKeyInfo input;
             var nastRefresh = true;
             var instRefresh = true;
+            var statusRefresh = true;
 
-            this.interfejs.pasekStatusu(this.bohater.pobierzStatus());
             do
             {   
                 // wyświetlam ekran gry
                 this.interfejs.ekranGry(wybor);
+                
+                if (statusRefresh)
+                {
+                    this.interfejs.pasekStatusu(this.bohater.pobierzStatus());
+                    statusRefresh = false;
+                }
 
                 if(nastRefresh)
                 {
@@ -79,6 +85,12 @@ namespace gra_k
                                 this.dojo.pobierzCiosy()
                             );
                             nastRefresh = true;
+                            break;
+
+                        case 2:
+                            this.bohater.dodajPieniadze(400);
+                            this.bohater.dodajDoswiadczenie(1500);
+                            statusRefresh = true;
                             break;
                     }
                 }
@@ -182,6 +194,9 @@ namespace gra_k
                                     wyborPrzedmiotu(wybor);
                                     break;
                             }
+
+                            // możliwe, że zmieniły się statystyki bohatera
+                            statusRefresh = true;
                         }
 
                         else
@@ -207,21 +222,50 @@ namespace gra_k
 
         private void wyborCiosu(int wybrane)
         {
-            
+            uint punkty = this.bohater.pobierzStatus().punktyZdolnosci;
+            uint koszt = this.dojo.pobierzCiosy()[wybrane].pobierzKoszt();
+            if (punkty >= koszt)
+            {
+                this.bohater.dodajCios(this.dojo.pobierzCiosy()[wybrane]);
+            }
+            else
+            {
+                // COMEBAK: trzeba zrobić popup z wynikiem operacji
+            }
         }
 
 
 
         private void wyborCwiczenia(int wybrane)
         {
-
+            uint pieniadze = this.bohater.pobierzStatus().pieniadze;
+            uint koszt = this.dojo.pobierzCwiczenia()[wybrane].pobierzKoszt();
+            if (pieniadze >= koszt)
+            {
+                this.bohater.wydajPieniadze(koszt);
+                this.bohater.pocwicz(this.dojo.pobierzCwiczenia()[wybrane]);
+            }
+            else
+            {
+                // COMEBAK: trzeba zrobić popup z wynikiem operacji
+            }
         }
 
 
 
         private void wyborPrzedmiotu(int wybrane)
         {
-
+            uint pieniadze = this.bohater.pobierzStatus().pieniadze;
+            uint koszt = this.dojo.PobierzPrzedmioty()[wybrane].pobierzCene();
+            if (pieniadze >= koszt)
+            {
+                this.bohater.wydajPieniadze(koszt);
+                this.bohater.ubierzPancerz(this.dojo.PobierzPrzedmioty()[wybrane]);
+            }
+            else
+            {
+                // COMEBAK: trzeba zrobić popup z wynikiem operacji
+            }
         }
     }
 }

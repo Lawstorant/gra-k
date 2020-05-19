@@ -1,3 +1,0 @@
-nazwa=testowy-przedmiot
-pancerz=1
-cena=100

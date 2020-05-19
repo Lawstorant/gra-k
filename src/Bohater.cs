@@ -78,6 +78,20 @@ namespace gra_k
             this.wykorzystajPunktyZdolnosci(dodawany.pobierzKoszt());
         }
 
+        public void pocwicz(Cwiczenie doWykonania)
+        {
+            uint[] staty = doWykonania.pobierzStaty();
+
+            this.zycie += staty[0];
+            this.wytrzymalosc += staty[1];
+            this.sila += staty[2];
+        }
+
+        public void ubierzPancerz(Przedmiot pancerz)
+        {
+            this.pancerz = pancerz.pobierzPancerz();
+        }
+
         public new StatusPostaci pobierzStatus()
         {
             var aktualnyStatus = base.pobierzStatus();

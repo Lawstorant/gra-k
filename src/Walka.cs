@@ -2,8 +2,8 @@ namespace gra_k
 {
     public class Walka
     {
-        private Postac uczestnik1;
-        private Postac uczestnik2;
+        private Postac bohater;
+        private Postac przeciwnik;
         private uint licznikTury;
 
 

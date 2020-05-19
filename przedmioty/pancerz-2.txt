@@ -1,0 +1,3 @@
+nazwa=Pancerz 2
+pancerz=2
+cena=200

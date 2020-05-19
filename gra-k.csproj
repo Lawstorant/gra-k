@@ -7,13 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="ciosy\prosty.txt">
+    <None Update="ciosy\cios-1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="ciosy\cios-2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="cwiczenia\test.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="przedmioty\test.txt">
+    <None Update="przedmioty\pancerz-1.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="przedmioty\pancerz-2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="textfiles\instrukcja.txt">

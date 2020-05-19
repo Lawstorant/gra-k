@@ -54,6 +54,7 @@ namespace gra_k
 
         public uint[] pobierzStaty() // Pobieranie statystyk
         {
+            // DLACZEGO? PO CO?
             uint[] staty = {this.zycie, this.wytrzymalosc, this.sila};
             return staty;
         }
