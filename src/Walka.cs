@@ -51,6 +51,12 @@ namespace gra_k
             do
             {   
                 this.interfejs.ekranWalki(wybor);
+
+                if (this.bohater.pobierzStatus().zycie == 0)
+                    exitState = true;
+
+                if (this.przeciwnik.pobierzStatus().zycie == 0)
+                    exitState = true;
                 
                 if (statusRefresh)
                 {
@@ -58,7 +64,7 @@ namespace gra_k
                     statusRefresh = false;
                 }
 
-                if(przeciwnikRefresh)
+                if (przeciwnikRefresh)
                 {
                     this.interfejs.oknoPrzeciwnika(
                         this.przeciwnik.pobierzStatus(),
@@ -67,7 +73,7 @@ namespace gra_k
                    przeciwnikRefresh = false;
                 }
 
-                if(przebiegRefresh)
+                if (przebiegRefresh)
                 {
                     this.interfejs.oknoPrzebieguWalki(this.przebieg.ToArray());
                     przebiegRefresh = false;
@@ -84,17 +90,14 @@ namespace gra_k
                     ++wybor;
                 else if (input.Key == ConsoleKey.Enter)
                 {
-                    switch(wybor)
+                    switch (wybor)
                     {   
                         // atak
                         case 0:
                             if (!wykonanoAtak)
                             {
                                 wykonanoAtak = przeciwnikRefresh = this.atak();
-                                if (this.przeciwnik.pobierzStatus().zycie == 0)
-                                    exitState = true;
                             }
-
                             statusRefresh = true;
                             przebiegRefresh = true;
                             break;
@@ -113,8 +116,6 @@ namespace gra_k
                             this.przebieg.Add("Bohater oddal inicjatywe przciwnikowi");
                             this.przebieg.Add(" ");
                             this.ruchyPrzeciwnika();
-                            if (this.bohater.pobierzStatus().zycie == 0)
-                                    exitState = true;
                             this.KolejnaTura();
                             wykonanoAtak = wykonanoObrone = false;
                             przebiegRefresh = statusRefresh = true;
@@ -273,7 +274,8 @@ namespace gra_k
 
         private void przyznanieNagrod()
         {
-            ((Bohater)this.bohater).dodajPieniadze(100);
+            // TODO: poprawa balansu
+            ((Bohater)this.bohater).dodajPieniadze(150);
             ((Bohater)this.bohater).dodajDoswiadczenie(600);
         }
     }
