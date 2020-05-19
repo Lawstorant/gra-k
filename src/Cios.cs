@@ -2,6 +2,9 @@ using System.IO;
 
 namespace gra_k
 {
+    /// <summary>
+    /// Klasa odpowiedzialna za utworzenie zmiennych oraz pobrania i przypisania wartości
+    /// </summary>
     public class Cios
     {
         private string nazwa;
@@ -9,7 +12,12 @@ namespace gra_k
         private uint koszt;
 
         
-
+        /// <summary>
+        /// Przypisanie wartości do zmiennych 
+        /// </summary>
+        /// <param name="nazwa"></param> Nazwa ciosu
+        /// <param name="obrazenia"></param> Ilość zadawanych obrażeń
+        /// <param name="koszt"></param> Koszt zakupu ciosu
         public Cios(string nazwa, uint obrazenia, uint koszt)
         {
             this.nazwa = nazwa;
@@ -17,6 +25,9 @@ namespace gra_k
             this.koszt = koszt;
         }
 
+        /// <summary>
+        /// Pobiranie ze ścieżki oraz przypisanie paramertów 
+        /// </summary>
         public Cios(string sciezka)
         {
             StreamReader czytnik = new StreamReader(sciezka);
@@ -36,16 +47,24 @@ namespace gra_k
             this.koszt = uint.Parse(linie[2]);
         }
 
+        /// <summary>
+        /// Pobranie wartości nazwa
+        /// </summary>
         public string pobierzNazwe()
         {
             return this.nazwa;
         }
-
+        /// <summary>
+        /// Pobranie wartości obrażenia
+        /// </summary>
         public uint pobierzObrazenia()
         {
             return this.obrazenia;
         }
 
+        /// <summary>
+        /// Pobranie wartości koszt
+        /// </summary>
         public uint pobierzKoszt()
         {
             return this.koszt;
