@@ -72,17 +72,17 @@ namespace gra_k
             this.oknoNastepnego(status, pobraneCiosy);
             this.oknoInstrukcji();
             Console.ReadKey();
-            this.ekranDojo(1);
+            this.ekranDojo(1, true);
             Wyswietlanie.gotoXY(0,38);
             Console.ReadKey();
             this.oknoNaukiCiosow(pobraneCiosy, 2);
             Console.ReadKey();
             var xp = new Cwiczenie("Testowe", 4, 3, 4, 5);
             var cwiczenia = new Cwiczenie[] {xp, xp, xp};
-            this.ekranDojo(0);
+            this.ekranDojo(0, true);
             this.oknoCwiczen(cwiczenia, 1);
             Console.ReadKey();
-            this.ekranDojo(2);
+            this.ekranDojo(2, true);
             var xc = new Przedmiot("Testowy", 12, 154);
             var przedmioty = new Przedmiot[] {xc, xc, xc, xc};
             this.oknoPrzedmiotow(przedmioty, 1);
@@ -205,7 +205,7 @@ namespace gra_k
         // ekran dojo wyświetla dojo we współpracy z oknami ciosów, przedmiotów i ćwiczeń
         // przyjmuje int zaznaczonej opcji
         // (możemy wysłać -1 jeżeli nie chcemy zaznaczać niczego)
-        public void ekranDojo(int zaznaczonaOpcja)
+        public void ekranDojo(int zaznaczonaOpcja, bool rightScreen)
         {
             Wyswietlanie.okienko("Dojo", 0, 3, 40, 30);
 
@@ -216,7 +216,9 @@ namespace gra_k
                 else
                     Wyswietlanie.pisz(this.opcjeDojo[i], ConsoleColor.White, 3, 7+2*i);
             }
-            Wyswietlanie.okienko("Podmenu", 40, 3, 80, 30);
+
+            if (rightScreen)
+                Wyswietlanie.okienko("Podmenu", 40, 3, 80, 30);
         }
 
 

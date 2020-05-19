@@ -130,7 +130,9 @@ namespace gra_k
                         this.interfejs.oknoPrzedmiotow(this.dojo.PobierzPrzedmioty(), wybor);
                         break;
                     case 3:
-                        this.interfejs.ekranDojo(wybor);
+                        this.interfejs.ekranDojo(wybor, prawyRefresh);
+                        if (prawyRefresh)
+                            prawyRefresh = false;
                         break;
                 }
 
@@ -146,6 +148,8 @@ namespace gra_k
                 
                 // na podstawie klawisza zmieniam wybór,
                 // lub wybieram zaznaczoną opcję
+                // ta część jest bardzo smacznym daniem
+                // nazywa się spaghetti
                 if (input.Key == ConsoleKey.UpArrow)
                     --wybor;
                 else if (input.Key == ConsoleKey.DownArrow)
@@ -156,12 +160,35 @@ namespace gra_k
                     {
                         ktoreMenu = wybor;
                         wybor = 0;
+                        this.interfejs.ekranDojo(-1, false);
+                        prawyRefresh = true;
                     }
+
                     else
                     {
-                        
-                        wybor = ktoreMenu;
-                        ktoreMenu = 3;
+                        if (wybor != limit[ktoreMenu])
+                        {
+                            switch (ktoreMenu)
+                            {
+                                case 0:
+                                    wyborCwiczenia(wybor);
+                                    break;
+
+                                case 1:
+                                    wyborCiosu(wybor);
+                                    break;
+
+                                case 2:
+                                    wyborPrzedmiotu(wybor);
+                                    break;
+                            }
+                        }
+
+                        else
+                        {
+                            wybor = ktoreMenu;
+                            ktoreMenu = 3;
+                        }
                     }
                 }
 
@@ -178,7 +205,21 @@ namespace gra_k
 
 
 
-        public void walka()
+        private void wyborCiosu(int wybrane)
+        {
+            
+        }
+
+
+
+        private void wyborCwiczenia(int wybrane)
+        {
+
+        }
+
+
+
+        private void wyborPrzedmiotu(int wybrane)
         {
 
         }
