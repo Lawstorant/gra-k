@@ -2,6 +2,9 @@ using System;
 
 namespace gra_k
 {
+    /// <summary>
+    /// Klasa odpowiedzialna za wyświetlanie w konsoli gry 
+    /// </summary>
     public static class Wyswietlanie
     {
         public static void gotoXY(int x, int y)
