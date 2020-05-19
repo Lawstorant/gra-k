@@ -5,7 +5,7 @@ namespace gra_k
 {
     public struct SilaObrony
     {
-        public const double brak = 0;
+        public const double brak = 1;
         public const double normalna = 0.6;
         public const double mocna = 0.2;
         public const int kosztNormalna = 1;

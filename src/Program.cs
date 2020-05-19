@@ -9,11 +9,21 @@ namespace gra_k
             bool moznaGrac = true;
             if (args.Length > 0)
             {
+                // test interfejsu graficznego
                 if (args[0] == "-t" || args[0] == "--test")
                 {
                     moznaGrac = false;
                     InterfejsGry interfejs = new InterfejsGry();
                     interfejs.test();
+                }
+
+                // tutaj robimy szybkie testy pomysłu na kod
+                if (args[0] == "-g")
+                {
+                    moznaGrac = false;
+                    uint obrazenia = 4;
+                    obrazenia = (uint) Math.Ceiling ((1 * (double)obrazenia));
+                    System.Console.WriteLine(obrazenia);
                 }
             }
 
@@ -23,6 +33,7 @@ namespace gra_k
                 rozgrywka.graj();
             }
 
+            // TODO: przenieść to do destruktorów
             Console.CursorVisible = true; 
         }
     }

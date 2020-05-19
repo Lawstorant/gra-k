@@ -88,11 +88,14 @@ namespace gra_k
                             break;
 
                         case 2:
-                            var walka = new Walka(this.bohater, this.przeciwnik, this.interfejs);
-                            this.przeciwnik = null;
-                            walka.rozpocznij();
-                            
-                            statusRefresh = nastRefresh = instRefresh = true;
+                            if (przeciwnik != null)
+                            {
+                                var walka = new Walka(this.bohater, this.przeciwnik, this.interfejs);
+                                this.przeciwnik = null;
+                                walka.rozpocznij();
+
+                                statusRefresh = nastRefresh = instRefresh = true;
+                            }
                             break;
                     }
                 }
