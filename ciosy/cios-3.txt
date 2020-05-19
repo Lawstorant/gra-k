@@ -1,0 +1,3 @@
+nazwa=Podbrodkowy
+obrazenia=3
+koszt=4

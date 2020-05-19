@@ -1,0 +1,3 @@
+nazwa=Kopniak z półobrotu
+obrazenia=7
+koszt=9

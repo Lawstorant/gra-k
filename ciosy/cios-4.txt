@@ -1,0 +1,3 @@
+nazwa=Sierpowy
+obrazenia=4
+koszt=6

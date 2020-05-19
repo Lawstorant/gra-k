@@ -140,9 +140,9 @@ namespace gra_k
         public static Postac generujPostac(int poziom, Cios[] dostepneCiosy)
         {   
             var rnd = new Random();
-            uint zycie = (uint) rnd.Next(1, 2 * poziom +1);
-            uint wytrzymalosc = (uint) rnd.Next(1, 2 * poziom +1);
-            uint sila = (uint) rnd.Next(1, 2 * poziom +1);
+            uint zycie = (uint) rnd.Next(1, 2 * poziom +5);
+            uint wytrzymalosc = (uint) rnd.Next(1, 2 * poziom);
+            uint sila = (uint) rnd.Next(1, poziom);
             uint pancerz = poziom > 5 ? (uint) rnd.Next(1, poziom / 5 +1) : 0;
 
             var postac = new Postac(zycie, wytrzymalosc, sila, pancerz);
