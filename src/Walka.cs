@@ -154,7 +154,7 @@ namespace gra_k
                         this.przebieg.Add($"Bohater wykonuje atak {ciosy[wybor].pobierzNazwe()} z moca {obrazenia} punktow");
 
                         obrazenia = this.przeciwnik.przyjmijObrazenia(obrazenia);
-                        this.przebieg.Add($"Przeciwnik przyjmuje cios i otzymuje {obrazenia} obrazen");
+                        this.przebieg.Add($"Przeciwnik przyjmuje cios i otrzymuje {obrazenia} obrazen");
 
                         wynik = true;
                         wybor = limit;

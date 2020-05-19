@@ -5,7 +5,7 @@ namespace gra_k
 {
     public struct SilaObrony
     {
-        public const double brak = 1;
+        public const double brak = 1.0;
         public const double normalna = 0.6;
         public const double mocna = 0.2;
         public const int kosztNormalna = 1;
@@ -46,7 +46,7 @@ namespace gra_k
             this.wytrzymalosc = wytrzymalosc;
             this.sila = sila;
             this.pancerz = pancerz;
-            this.obrona = 0;
+            this.obrona = SilaObrony.brak;
             this.listaCiosow = new List<Cios>();
         }
 
