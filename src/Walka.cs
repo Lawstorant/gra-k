@@ -153,7 +153,7 @@ namespace gra_k
                         this.przebieg.Add($"Bohater wykonuje atak {ciosy[wybor].pobierzNazwe()} z moca {obrazenia} punktow");
 
                         obrazenia = this.przeciwnik.przyjmijObrazenia(obrazenia);
-                        this.przebieg.Add($"Przeciwnik przyjmuje cios i otzymuje {obrazenia} punktow obrazen");
+                        this.przebieg.Add($"Przeciwnik przyjmuje cios i otzymuje {obrazenia} obrazen");
 
                         wynik = true;
                         wybor = limit;
@@ -199,14 +199,16 @@ namespace gra_k
                     if (wybor == 0 && SilaObrony.kosztNormalna <= wytrzymalosc)
                     {
                         this.bohater.pozycjaObronna(SilaObrony.normalna);
-                        this.przebieg.Add($"Bohater przyjmuje normalna pozycje obronna, otrzyma tylko {SilaObrony.normalna} obrazen");
+                        this.przebieg.Add("Bohater przyjmuje normalna pozycję obronną,");
+                        this.przebieg.Add($"otrzyma tylko {SilaObrony.normalna} obrażeń");
                         wynik = true;
                         wybor = limit;
                     }
                     else if (SilaObrony.kosztMocna <= wytrzymalosc)
                     {
                         this.bohater.pozycjaObronna(SilaObrony.mocna);
-                        this.przebieg.Add($"Bohater przyjmuje lepszą pozycję obronną, otrzyma tylko {SilaObrony.mocna} obrażeń");
+                        this.przebieg.Add("Bohater przyjmuje lepszą pozycję obronną,");
+                        this.przebieg.Add($"otrzyma tylko {SilaObrony.mocna} obrażeń");
                         wynik = true;
                         wybor = limit;
                     }
@@ -253,7 +255,7 @@ namespace gra_k
 
             this.przeciwnik.ustawWytrzymalosc(wytrzymalosc);
 
-            this.przebieg.Add($"Uczestnicy dostaja po {turowaWytrzymalosc} punktow wytrzymalosci");
+            this.przebieg.Add($"Uczestnicy dostaja po {turowaWytrzymalosc} punkty wytrzymalosci");
         }
 
         private void przyznanieNagrod()

@@ -354,7 +354,7 @@ namespace gra_k
         // menu i ekran walki
         public void ekranWalki(int zaznaczonaOpcja)
         {   
-            Wyswietlanie.okienko("Wybierz akcje", 0, 3, 24, 30);
+            Wyswietlanie.okienko("Wybierz akcje", 0, 3, 26, 30);
 
             for (int i = 0; i < this.opcjeWalki.Length; ++i)
             {
@@ -369,7 +369,7 @@ namespace gra_k
         // okno pomocnicze przeciwnika. Wyświetla jego status i znane ciosy
         public void oknoPrzeciwnika(StatusPostaci przeciwnik, Cios[] ciosyPrzeciwnika)
         {
-            const int x = 98;
+            const int x = 96;
             Wyswietlanie.okienko("Twoj przeciwnik", x-3, 3, 120-x+3, 30);
 
             Wyswietlanie.pisz($"Statystyki", ConsoleColor.White, x, 6);
@@ -395,8 +395,8 @@ namespace gra_k
         // Wyświetla przebieg walki (ciosy, ataki, punkty obrażeń)
         public void oknoPrzebieguWalki(string[] przebieg)
         {
-            const int x = 27;
-            Wyswietlanie.okienko("Przebieg Walki", x-3, 3, 71, 30);
+            const int x = 29;
+            Wyswietlanie.okienko("Przebieg Walki", x-3, 3, 67, 30);
 
             int y = 7;
             int i = 0;
