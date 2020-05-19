@@ -68,7 +68,9 @@ namespace gra_k
             tomek.przyjmijObrazenia(10);
 
             this.pasekStatusu(status);
-            this.ekranGry(0, status, pobraneCiosy);
+            this.ekranGry(0);
+            this.oknoNastepnego(status, pobraneCiosy);
+            this.oknoInstrukcji();
             Console.ReadKey();
             this.ekranDojo(1);
             Wyswietlanie.gotoXY(0,38);
@@ -144,34 +146,26 @@ namespace gra_k
 
             for (int i = 0; i < this.opcjeGry.Length; ++i)
             {
-                if(i == zaznaczonaOpcja)
+                if (i == zaznaczonaOpcja)
                     Wyswietlanie.pisz(this.opcjeGry[i], ConsoleColor.Blue, 3, 7+2*i);
                 else
                     Wyswietlanie.pisz(this.opcjeGry[i], ConsoleColor.White, 3, 7+2*i);
-            }
-
-            Wyswietlanie.okienko("Instrukcja", 70, 3, 50, 30);
-            var czytnik = new System.IO.StreamReader(this.sciezkaInstrukcji);
-            string linia;
-            int offsetY = 0;
-            while ((linia = czytnik.ReadLine()) != null)
-            {
-                Wyswietlanie.pisz(linia, ConsoleColor.White, 73, 7+offsetY);
-                offsetY += 1;
-            }
-            czytnik.Close();
-
-            Wyswietlanie.okienko("Nastepny przeciwnik", 30, 3, 40, 30);
+            }            
         }
 
 
-        // ekran główny wyświetlający informacje o kolejnym przeciwniku
-        // przyjmuje status przeciwnika i jego listę ciosów
-        public void ekranGry(int zaznaczonaOpcja, StatusPostaci przeciwnik, Cios[] listaCiosowPrzeciwnika)
-        {
-            this.ekranGry(zaznaczonaOpcja);
-            const int x = 33;
 
+        public void oknoNastepnego()
+        {
+            Wyswietlanie.okienko("Nastepny przeciwnik", 30, 3, 40, 30);
+        }
+
+        public void oknoNastepnego(StatusPostaci przeciwnik, Cios[] listaCiosowPrzeciwnika)
+        {
+            this.oknoNastepnego();
+
+            const int x = 33;
+            
             Wyswietlanie.pisz($"Statystyki", ConsoleColor.White, x, 6);
             Wyswietlanie.pisz($"Życie: {przeciwnik.zycie}", ConsoleColor.Red, x, 8);
             Wyswietlanie.pisz($"Wytrzymalosc: {przeciwnik.wytrzymalosc}", ConsoleColor.Yellow, x, 9);
@@ -188,7 +182,24 @@ namespace gra_k
             {
                 Wyswietlanie.pisz($"{listaCiosowPrzeciwnika[i].pobierzNazwe()}", ConsoleColor.White, x, 19+i);
             }
+        }        
+
+
+
+        public void oknoInstrukcji()
+        {
+            Wyswietlanie.okienko("Instrukcja", 70, 3, 50, 30);
+            var czytnik = new System.IO.StreamReader(this.sciezkaInstrukcji);
+            string linia;
+            int offsetY = 0;
+            while ((linia = czytnik.ReadLine()) != null)
+            {
+                Wyswietlanie.pisz(linia, ConsoleColor.White, 73, 7+offsetY);
+                offsetY += 1;
+            }
+            czytnik.Close();
         }
+
 
 
         // ekran dojo wyświetla dojo we współpracy z oknami ciosów, przedmiotów i ćwiczeń
@@ -411,10 +422,10 @@ namespace gra_k
             for (int i = 0; i <= listaCiosow.Length; i++)
             {   
                 temp = y + 1 + i*2;
-                if(i == zaznaczonaOpcja)
+                if (i == zaznaczonaOpcja)
                     kolor = ConsoleColor.Blue;
 
-                if(i < listaCiosow.Length)
+                if (i < listaCiosow.Length)
                 {
                     Wyswietlanie.pisz(listaCiosow[i].pobierzNazwe(), kolor, x+1, temp);
                     Wyswietlanie.pisz(listaCiosow[i].pobierzKoszt().ToString(), ConsoleColor.Yellow, temp2-6, temp);
@@ -423,7 +434,7 @@ namespace gra_k
                 else
                     Wyswietlanie.pisz("Powrot", kolor, x+1, temp);
 
-                if(i == zaznaczonaOpcja)
+                if (i == zaznaczonaOpcja)
                     kolor = ConsoleColor.White;
             }
         }

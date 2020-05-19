@@ -12,6 +12,8 @@ namespace gra_k
         public const int kosztMocna = 2;
     }
 
+
+
     public struct StatusPostaci
     {
         public uint zycie;
@@ -25,14 +27,15 @@ namespace gra_k
         public uint pieniadze;
     }
 
+
+
     public class Postac
     {
         protected uint zycie;
         protected uint wytrzymalosc;
         protected uint sila;
         protected uint pancerz;
-        // Lista ciosów jako generyczna lista dynamiczna, ułatwia dodawanie ciosów
-        protected List<Cios> listaCiosow;
+        protected List<Cios> listaCiosow; // Lista ciosów jako generyczna lista dynamiczna, ułatwia dodawanie ciosów
         protected double obrona;
 
 
@@ -47,6 +50,8 @@ namespace gra_k
             this.listaCiosow = new List<Cios>();
         }
 
+
+
         public Cios[] pobierzCiosy()
         {
             Cios[] zawartosc = new Cios[this.listaCiosow.Count];
@@ -59,15 +64,21 @@ namespace gra_k
             return zawartosc;
         }
 
+
+
         public void dodajCios(Cios dodawany)
         {
             this.listaCiosow.Add(dodawany);
         }
 
+
+
         public uint wykonajAtak(uint ciosIndex)
         {
             return this.sila * this.listaCiosow[(int) ciosIndex].pobierzObrazenia();
         }
+
+
 
         public void przyjmijObrazenia(uint obrazenia)
         {
@@ -81,6 +92,8 @@ namespace gra_k
                 zycie = 0;
         }
 
+
+
         public void pozycjaObronna(double moc)
         {
             this.obrona = moc;
@@ -90,13 +103,10 @@ namespace gra_k
                 this.wytrzymalosc -= 2;
         }
 
+
+
         public StatusPostaci pobierzStatus()
         {
-            // TODO: trzeba wypełnić
-            // status jako struct? Ułatwiłoby to przesyłanie
-            // do bufora wyświetlania
-            // Tomek
-
             var aktualnyStatus = new StatusPostaci();
 
             aktualnyStatus.zycie = this.zycie;
@@ -106,6 +116,39 @@ namespace gra_k
             aktualnyStatus.obrona = this.obrona;
 
             return aktualnyStatus;
+        }
+
+
+
+        public static Postac generujPostac(int poziom, Cios[] dostepneCiosy)
+        {   
+            var rnd = new Random();
+            uint zycie = (uint) rnd.Next(1, 2 * poziom +1);
+            uint wytrzymalosc = (uint) rnd.Next(1, 2 * poziom +1);
+            uint sila = (uint) rnd.Next(1, 2 * poziom +1);
+            uint pancerz = poziom > 5 ? (uint) rnd.Next(1, poziom / 5 +1) : 0;
+
+            var postac = new Postac(zycie, wytrzymalosc, sila, pancerz);
+
+            // losujemy ciosy dla postaci
+            // ilosc bazowana na połowie poziomu
+            bool[] wykorzystane = new bool[dostepneCiosy.Length];
+            int i = 0;
+            while ((i < poziom / 2 +1) && (i < dostepneCiosy.Length))
+            {
+                var los = rnd.Next(0, dostepneCiosy.Length);
+
+                // sprawdzam czy cios jest już wykorzystany
+                // jeżeli nie, to dodaję go do postaci
+                if(!wykorzystane[los])
+                {
+                    postac.dodajCios(dostepneCiosy[los]);
+                    wykorzystane[los] = true;
+                    ++i;
+                }
+            }
+
+            return postac;
         }
     }
 }
