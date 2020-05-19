@@ -73,14 +73,15 @@ namespace gra_k
 
 
 
-        public uint wykonajAtak(uint ciosIndex)
-        {
-            return this.sila * this.listaCiosow[(int) ciosIndex].pobierzObrazenia();
+        public uint wykonajAtak(int ciosIndex)
+        {   
+            this.wytrzymalosc -= this.listaCiosow[ciosIndex].pobierzKoszt();
+            return this.sila * this.listaCiosow[ciosIndex].pobierzObrazenia();
         }
 
 
 
-        public void przyjmijObrazenia(uint obrazenia)
+        public uint przyjmijObrazenia(uint obrazenia)
         {
             // COMEBAK: będzie potrzebny balans, może plik konfiguacyjny?
             obrazenia -= this.pancerz;
@@ -90,6 +91,15 @@ namespace gra_k
                 this.zycie -= obrazenia;
             else
                 zycie = 0;
+
+            return obrazenia;
+        }
+
+
+
+        public void ustawWytrzymalosc(uint punkty)
+        {
+            this.wytrzymalosc = punkty;
         }
 
 
@@ -98,9 +108,9 @@ namespace gra_k
         {
             this.obrona = moc;
             if (moc == SilaObrony.normalna)
-                this.wytrzymalosc -= 1;
+                this.wytrzymalosc -= SilaObrony.kosztNormalna;
             else
-                this.wytrzymalosc -= 2;
+                this.wytrzymalosc -= SilaObrony.kosztMocna;
         }
 
 

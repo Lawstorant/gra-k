@@ -88,9 +88,11 @@ namespace gra_k
                             break;
 
                         case 2:
-                            this.bohater.dodajPieniadze(400);
-                            this.bohater.dodajDoswiadczenie(1500);
-                            statusRefresh = true;
+                            var walka = new Walka(this.bohater, this.przeciwnik, this.interfejs);
+                            this.przeciwnik = null;
+                            walka.rozpocznij();
+                            
+                            statusRefresh = nastRefresh = instRefresh = true;
                             break;
                     }
                 }

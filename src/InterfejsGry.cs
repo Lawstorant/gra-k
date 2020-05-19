@@ -98,12 +98,12 @@ namespace gra_k
             {
                 lista.Add($"{i} TEST TEST TEST");
             }
-            this.oknoPrzebieguWalki(lista);
+            this.oknoPrzebieguWalki(lista.ToArray());
             this.oknoPrzeciwnika(status, pobraneCiosy);
             this.okienkoWyboruCiosu(pobraneCiosy, 1);
             Console.ReadKey();
             this.ekranWalki(1);
-            this.oknoPrzebieguWalki(lista);
+            this.oknoPrzebieguWalki(lista.ToArray());
             this.okienkoWyboruObrony(1);
             Wyswietlanie.gotoXY(0,38);
             Console.ReadKey();
@@ -354,7 +354,7 @@ namespace gra_k
         // menu i ekran walki
         public void ekranWalki(int zaznaczonaOpcja)
         {   
-            Wyswietlanie.okienko("Wybierz akcje", 0, 3, 30, 30);
+            Wyswietlanie.okienko("Wybierz akcje", 0, 3, 24, 30);
 
             for (int i = 0; i < this.opcjeWalki.Length; ++i)
             {
@@ -369,9 +369,9 @@ namespace gra_k
         // okno pomocnicze przeciwnika. Wyświetla jego status i znane ciosy
         public void oknoPrzeciwnika(StatusPostaci przeciwnik, Cios[] ciosyPrzeciwnika)
         {
-            Wyswietlanie.okienko("Twoj przeciwnik", 80, 3, 40, 30);
+            const int x = 98;
+            Wyswietlanie.okienko("Twoj przeciwnik", x-3, 3, 120-x+3, 30);
 
-            const int x = 83;
             Wyswietlanie.pisz($"Statystyki", ConsoleColor.White, x, 6);
             Wyswietlanie.pisz($"Życie: {przeciwnik.zycie}", ConsoleColor.Red, x, 8);
             Wyswietlanie.pisz($"Wytrzymalosc: {przeciwnik.wytrzymalosc}", ConsoleColor.Yellow, x, 9);
@@ -379,10 +379,10 @@ namespace gra_k
             Wyswietlanie.pisz($"Pancerz: {przeciwnik.pancerz}", ConsoleColor.White, x, 11);
             Wyswietlanie.pisz($"Znane ciosy", ConsoleColor.White, x, 16);
 
-            Wyswietlanie.rozdzielacz(40, false, x-3, 7);
+            Wyswietlanie.rozdzielacz(120-x+3, false, x-3, 7);
 
-            Wyswietlanie.rozdzielacz(40, false, x-3, 15);
-            Wyswietlanie.rozdzielacz(40, false, x-3, 17);
+            Wyswietlanie.rozdzielacz(120-x+3, false, x-3, 15);
+            Wyswietlanie.rozdzielacz(120-x+3, false, x-3, 17);
             
 
             for (int i = 0; i < ciosyPrzeciwnika.Length; i++)
@@ -393,18 +393,18 @@ namespace gra_k
 
 
         // Wyświetla przebieg walki (ciosy, ataki, punkty obrażeń)
-        public void oknoPrzebieguWalki(List<string> przebieg)
+        public void oknoPrzebieguWalki(string[] przebieg)
         {
-            Wyswietlanie.okienko("Przebieg Walki", 30, 3, 50, 30);
+            const int x = 27;
+            Wyswietlanie.okienko("Przebieg Walki", x-3, 3, 71, 30);
 
-            const int x = 33;
             int y = 7;
             int i = 0;
 
-            if(przebieg.Count > 24)
-                i = przebieg.Count - 24;
+            if(przebieg.Length > 24)
+                i = przebieg.Length - 24;
             
-            for (; i < przebieg.Count; i++)
+            for (; i < przebieg.Length; i++)
             {
                 Wyswietlanie.pisz(przebieg[i], ConsoleColor.White, x, y++);
             }
