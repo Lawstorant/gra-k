@@ -1,5 +1,6 @@
 namespace gra_k
 {
+    ///Klasa ta odpowiedzialna jest za generowanie statystyk bohatera
     public class Bohater : Postac
     {
         protected uint poziom;
@@ -8,7 +9,13 @@ namespace gra_k
         protected uint pieniadze;
 
 
-
+        /// <summary>
+        /// Zmienne typ uint aby nie zostały wygenerowane na minusie
+        /// </summary>
+        /// <param name="zycie"></param> Zmienna odpowiadająca za poziom życia  
+        /// <param name="wytrzymalosc"></param> Zmienna odpowiedzialna za poziom wytrzymałości 
+        /// <param name="sila"></param> Zmienna odpowiedzialna za poziom siły
+        /// <param name="pancerz"></param> Zmienna odpowiadająca za ilość pancerza 
         public Bohater(
             uint zycie,
             uint wytrzymalosc,
@@ -24,7 +31,11 @@ namespace gra_k
         // TODO: Zrobić konstruktor wczytujący bohatera z pliku zapisu
 
         // TODO: Zrobić pobieranie dodatkowych statystyk bohatera
-
+        /// <summary>
+        /// Metoda dodajDoswiadczenie() odpowiada za dodanie punktów doświadczenia po zakończonej walce w dojo.
+        /// Znajduje się tu odowałenie do metody typu private sprawdzMozliwoscLVLUP() która sprawdza czy można podnieść poziom bohatera.
+        /// </summary>
+        /// <param name="doswiadczenie"></param>
         public void dodajDoswiadczenie(uint doswiadczenie)
         {
             this.doswiadczenie += doswiadczenie;
@@ -58,12 +69,18 @@ namespace gra_k
             else
                 this.punktyZdolnosci = 0;
         }
-
+        /// <summary>
+        /// Metoda odpowiadająca za dodanie funduszy graczowi 
+        /// </summary>
+        /// <param name="przychod"></param>
         public void dodajPieniadze(uint przychod)
         {
             this.pieniadze += przychod;
         }
-
+        /// <summary>
+        /// Metoda odpowiedzialna za odjęcie z funduszu środków 
+        /// </summary>
+        /// <param name="wydatek"></param>
         public void wydajPieniadze(uint wydatek)
         {
             if(wydatek <= this.pieniadze)
@@ -71,13 +88,18 @@ namespace gra_k
                 this.pieniadze -= wydatek;
             }
         }
-        
+        /// <summary>
+        /// Dodanie ciostu 
+        /// Odwołanie do metody typu private z pobraniem kosztów związanych z zakupem ciosów
+        /// </summary>
         public new void dodajCios(Cios dodawany)
         {
             base.dodajCios(dodawany);
             this.wykorzystajPunktyZdolnosci(dodawany.pobierzKoszt());
         }
-
+        /// <summary>
+        /// Metoda odpowiedzialna za dodanie statystyk po wykonaniu ćwiczenia 
+        /// </summary>
         public void pocwicz(Cwiczenie doWykonania)
         {
             uint[] staty = doWykonania.pobierzStaty();
@@ -86,12 +108,17 @@ namespace gra_k
             this.wytrzymalosc += staty[1];
             this.sila += staty[2];
         }
-
+        /// <summary>
+        /// Metoda odpowiedzialna za dodanie pancerza do statysyk
+        /// </summary>
+        /// <param name="pancerz"></param>
         public void ubierzPancerz(Przedmiot pancerz)
         {
             this.pancerz = pancerz.pobierzPancerz();
         }
-
+        /// <summary>
+        /// Metoda odpowiedzialna za pobranie statystyk 
+        /// </summary>
         public new StatusPostaci pobierzStatus()
         {
             var aktualnyStatus = base.pobierzStatus();
