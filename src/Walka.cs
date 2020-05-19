@@ -19,7 +19,9 @@ namespace gra_k
         public Walka(Postac bohater, Postac przeciwnik, InterfejsGry interfejs)
         {
             this.bohater = bohater;
+            this.maxBohater = bohater.pobierzStatus().wytrzymalosc;
             this.przeciwnik = przeciwnik;
+            this.maxPrzeciwnik = przeciwnik.pobierzStatus().wytrzymalosc;
             this.licznikTury = 1;
             this.interfejs = interfejs;
             this.przebieg = new List<string>();
@@ -107,8 +109,7 @@ namespace gra_k
                             this.ruchyPrzeciwnika();
                             this.KolejnaTura();
                             wykonanoAtak = wykonanoObrone = false;
-                            przebiegRefresh = true;
-                            
+                            przebiegRefresh = statusRefresh = true;
                             break;
                     }
                 }
