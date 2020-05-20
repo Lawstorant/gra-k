@@ -131,7 +131,7 @@ namespace gra_k
                 else if (wybor > 3)
                     wybor = 0;
 
-            } while ((wybor != 3 || input.Key != ConsoleKey.Enter) && exitState != 0);
+            } while ((wybor != 3 || input.Key != ConsoleKey.Enter) && exitState == 0);
 
             this.przyznanieNagrod(exitState);
             this.bohater.ustawZycie(pelneZycie);
