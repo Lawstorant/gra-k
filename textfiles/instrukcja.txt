@@ -12,7 +12,8 @@ punktów wytrzymałości, które są odnawiane po
 każdej turze.
 
 Atak zawsze zadaje minimum 1 punkt obrażeń
-
+Pierwszy nowy cios kosztuje dwa punkty zdolnosci
+każdy kolejny o jeden więcej
 
 Poruszanie się po menusach gry:
 Strzałki góra/dół
