@@ -313,7 +313,6 @@ namespace gra_k
                 wytrzymalosc = maxBohater;
 
             this.bohater.ustawWytrzymalosc(wytrzymalosc);
-            Console.ReadKey();
 
             wytrzymalosc = this.przeciwnik.pobierzStatus().wytrzymalosc;
             wytrzymalosc += turowaWytrzymalosc;
