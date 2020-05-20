@@ -12,7 +12,7 @@ namespace gra_k
         private List<string> przebieg;
         private uint maxBohater;
         private uint maxPrzeciwnik;
-        private const uint turowaWytrzymalosc = 3;
+        private uint turowaWytrzymalosc;
 
 
 
@@ -25,6 +25,7 @@ namespace gra_k
             this.licznikTury = 1;
             this.interfejs = interfejs;
             this.przebieg = new List<string>();
+            this.turowaWytrzymalosc = 3;
             
             this.przebieg.Add("Panie i Panowie!");
             this.przebieg.Add("Na arenie zaczynamy wlasnie nowy pojedynek!");
@@ -307,11 +308,12 @@ namespace gra_k
             this.przebieg.Add($"=== TURA {this.licznikTury} ===");
 
             uint wytrzymalosc = this.bohater.pobierzStatus().wytrzymalosc;
-            wytrzymalosc += turowaWytrzymalosc;
+            wytrzymalosc = wytrzymalosc + this.turowaWytrzymalosc;
             if (wytrzymalosc > maxBohater)
                 wytrzymalosc = maxBohater;
 
             this.bohater.ustawWytrzymalosc(wytrzymalosc);
+            Console.ReadKey();
 
             wytrzymalosc = this.przeciwnik.pobierzStatus().wytrzymalosc;
             wytrzymalosc += turowaWytrzymalosc;
