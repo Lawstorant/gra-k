@@ -8,6 +8,7 @@ namespace gra_k
         private Dojo dojo;
         private InterfejsGry interfejs;
         private Postac przeciwnik;
+        private uint kosztNauki;
 
 
 
@@ -18,6 +19,7 @@ namespace gra_k
             this.bohater.dodajCios(new Cios("ciosy/cios-1.txt"));
             this.przeciwnik = null;
             this.interfejs = new InterfejsGry();
+            this.kosztNauki = 2;
         }
 
 
@@ -229,9 +231,10 @@ namespace gra_k
         {
             uint punkty = this.bohater.pobierzStatus().punktyZdolnosci;
             uint koszt = this.dojo.pobierzCiosy()[wybrane].pobierzKoszt();
-            if (punkty >= koszt)
+            if (punkty >= this.kosztNauki)
             {
                 this.bohater.dodajCios(this.dojo.pobierzCiosy()[wybrane]);
+                ++kosztNauki;
             }
             else
             {
