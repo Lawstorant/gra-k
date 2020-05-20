@@ -46,21 +46,23 @@ namespace gra_k
             var wykonanoAtak = false;
             var wykonanoObrone = false;
             uint pelneZycie = this.bohater.pobierzStatus().zycie;
-            var exitState = false;
+
+            // 0 - ucieczka, 1 - wygrana, 2 - przegrana
+            int exitState = 0;
 
             do
             {   
                 this.interfejs.ekranWalki(wybor);
 
                 if (this.bohater.pobierzStatus().zycie == 0)
-                    exitState = true;
+                    exitState = 2;
 
                 if (this.przeciwnik.pobierzStatus().zycie == 0)
-                    exitState = true;
+                    exitState = 1;
                 
                 if (statusRefresh)
                 {
-                    this.interfejs.pasekStatusu(this.bohater.pobierzStatus());
+                    this.interfejs.pasekStatusu(((Bohater)this.bohater).pobierzStatus());
                     statusRefresh = false;
                 }
 
@@ -129,9 +131,9 @@ namespace gra_k
                 else if (wybor > 3)
                     wybor = 0;
 
-            } while ((wybor != 3 || input.Key != ConsoleKey.Enter) && !exitState);
+            } while ((wybor != 3 || input.Key != ConsoleKey.Enter) && exitState != 0);
 
-            this.przyznanieNagrod();
+            this.przyznanieNagrod(exitState);
             this.bohater.ustawZycie(pelneZycie);
             this.bohater.ustawWytrzymalosc(maxBohater);
         }
@@ -243,7 +245,56 @@ namespace gra_k
 
         private void ruchyPrzeciwnika()
         {
+            Random rnd = new Random();
+            var ciosy = this.przeciwnik.pobierzCiosy();
+            Cios atak;
+            int l = ciosy.Length;
+            int s = 0;
 
+            // atakowanie, 80% sansy na atak
+            if (rnd.Next(1,11) <= 8)
+            {
+                int w = rnd.Next(0,ciosy.Length);
+
+                if (this.przeciwnik.pobierzStatus().wytrzymalosc >= ciosy[w].pobierzKoszt())
+                {
+                    uint obrazenia = this.przeciwnik.wykonajAtak(w);
+                    this.przebieg.Add($"Przeciwnik wykonuje atak {ciosy[w].pobierzNazwe()} z moca {obrazenia} punktow");
+
+                    obrazenia = this.bohater.przyjmijObrazenia(obrazenia);
+                    this.przebieg.Add($"Bohater przyjmuje cios i otrzymuje {obrazenia} obrazen");
+                }
+            }
+            
+            // 50% szansy na próbę obrony
+            if (rnd.Next(1,11) <= 5)
+            {
+                if (rnd.Next(0,2) == 1)
+                {
+                    if (this.przeciwnik.pobierzStatus().wytrzymalosc >= SilaObrony.kosztMocna)
+                        s = 2;
+                    else if (this.przeciwnik.pobierzStatus().wytrzymalosc >= SilaObrony.kosztNormalna)
+                        s = 1;
+                }
+                else
+                {
+                    if (this.przeciwnik.pobierzStatus().wytrzymalosc >= SilaObrony.kosztNormalna)
+                        s = 1;
+                }
+            }
+            
+            if (s == 1)
+            {
+                this.bohater.pozycjaObronna(SilaObrony.normalna);
+                this.przebieg.Add("Przeciwnik przyjmuje normalna pozycję obronną,");
+                this.przebieg.Add($"otrzyma tylko {SilaObrony.normalna} obrażeń");
+            }
+            else if (s == 2)
+            {
+                this.bohater.pozycjaObronna(SilaObrony.mocna);
+                this.przebieg.Add("Przeciwnik przyjmuje lepszą pozycję obronną,");
+                this.przebieg.Add($"otrzyma tylko {SilaObrony.mocna} obrażeń");
+            }
         }
 
         
@@ -272,11 +323,23 @@ namespace gra_k
             this.przebieg.Add($"Uczestnicy dostaja po {turowaWytrzymalosc} punkty wytrzymalosci");
         }
 
-        private void przyznanieNagrod()
+        private void przyznanieNagrod(int wynikWalki)
         {
             // TODO: poprawa balansu
-            ((Bohater)this.bohater).dodajPieniadze(150);
-            ((Bohater)this.bohater).dodajDoswiadczenie(600);
+            switch (wynikWalki)
+            {   
+                // wygrana
+                case 1:
+                    ((Bohater)this.bohater).dodajPieniadze(200);
+                    ((Bohater)this.bohater).dodajDoswiadczenie(600);
+                    break;
+
+                // przegrana
+                case 2:
+                    ((Bohater)this.bohater).dodajPieniadze(50);
+                    ((Bohater)this.bohater).dodajDoswiadczenie(200);
+                    break;
+            }
         }
     }
 }

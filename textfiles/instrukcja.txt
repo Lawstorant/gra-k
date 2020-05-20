@@ -11,6 +11,8 @@ Czynności te wymagają odpowiedniej liczby
 punktów wytrzymałości, które są odnawiane po
 każdej turze.
 
+Atak zawsze zadaje minimum 1 punkt obrażeń
+
 
 Poruszanie się po menusach gry:
 Strzałki góra/dół

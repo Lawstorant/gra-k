@@ -21,8 +21,8 @@ namespace gra_k
                 if (args[0] == "-g")
                 {
                     moznaGrac = false;
-                    uint obrazenia = 4;
-                    obrazenia = (uint) Math.Ceiling ((1 * (double)obrazenia));
+                    uint obrazenia = 2;
+                    obrazenia = (uint) Math.Floor ((0.7 * (double)obrazenia));
                     System.Console.WriteLine(obrazenia);
                 }
             }

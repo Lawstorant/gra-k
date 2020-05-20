@@ -14,7 +14,7 @@ namespace gra_k
         public Gra()
         {
             this.dojo = new Dojo();
-            this.bohater = new Bohater(5, 2, 0, 0);
+            this.bohater = new Bohater(5, 2, 1, 0);
             this.bohater.dodajCios(new Cios("ciosy/cios-1.txt"));
             this.przeciwnik = null;
             this.interfejs = new InterfejsGry();

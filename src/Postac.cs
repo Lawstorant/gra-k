@@ -85,7 +85,10 @@ namespace gra_k
         {
             // COMEBAK: będzie potrzebny balans, może plik konfiguacyjny?
             obrazenia -= this.pancerz;
-            obrazenia = (uint) Math.Ceiling ((this.obrona * (double)obrazenia));
+            obrazenia = (uint) Math.Floor ((this.obrona * (double)obrazenia));
+            if (obrazenia == 0)
+                obrazenia = 1;
+            this.obrona = 1.0;
 
             if (obrazenia <= this.zycie)
                 this.zycie -= obrazenia;
@@ -140,8 +143,8 @@ namespace gra_k
         public static Postac generujPostac(int poziom, Cios[] dostepneCiosy)
         {   
             var rnd = new Random();
-            uint zycie = (uint) rnd.Next(1, 2 * poziom +5);
-            uint wytrzymalosc = (uint) rnd.Next(1, 2 * poziom);
+            uint zycie = (uint) rnd.Next(poziom+2, 2 * poziom +5);
+            uint wytrzymalosc = (uint) rnd.Next(poziom+1, 2 * poziom);
             uint sila = (uint) rnd.Next(1, poziom);
             uint pancerz = poziom > 5 ? (uint) rnd.Next(1, poziom / 5 +1) : 0;
 
@@ -150,8 +153,8 @@ namespace gra_k
             // losujemy ciosy dla postaci
             // ilosc bazowana na połowie poziomu
             bool[] wykorzystane = new bool[dostepneCiosy.Length];
-            int i = 0;
-            while ((i < poziom / 3 +1) && (i < dostepneCiosy.Length))
+            int i = 0, g = 0;
+            while ((i < poziom / 3 +1) && (g < dostepneCiosy.Length))
             {
                 var los = rnd.Next(0, dostepneCiosy.Length);
 
@@ -159,9 +162,13 @@ namespace gra_k
                 // jeżeli nie, to dodaję go do postaci
                 if(!wykorzystane[los])
                 {
-                    postac.dodajCios(dostepneCiosy[los]);
                     wykorzystane[los] = true;
-                    ++i;
+                    if(dostepneCiosy[los].pobierzKoszt() <= postac.pobierzStatus().wytrzymalosc)
+                    {
+                        postac.dodajCios(dostepneCiosy[los]);
+                        ++i;
+                    }
+                    ++g;
                 }
             }
 
